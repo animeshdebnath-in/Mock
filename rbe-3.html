@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SSC CGL Tier-2 Mock 3 – Mathematical Abilities</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,Helvetica,sans-serif;background:#f2f5f8;color:#222;font-size:15px}
+button{font-family:inherit;cursor:pointer}
+.hidden{display:none!important}
+sub,sup{font-size:.75em}
+/* ---------- intro ---------- */
+#intro{max-width:820px;margin:30px auto;background:#fff;border:1px solid #cfd8e0;border-radius:6px;overflow:hidden}
+#intro header{background:#0f96c7;color:#fff;padding:18px 24px}
+#intro header h1{font-size:20px}
+#intro header p{font-size:13px;opacity:.9;margin-top:4px}
+#intro .body{padding:22px 24px;line-height:1.6}
+#intro ul{margin:10px 0 14px 22px}
+#intro .meta{display:flex;gap:12px;flex-wrap:wrap;margin:12px 0}
+#intro .meta div{background:#eaf6fb;border:1px solid #bfe3f2;border-radius:4px;padding:8px 14px;font-size:13px}
+#intro input{padding:9px 12px;border:1px solid #aab;border-radius:4px;width:260px;font-size:15px}
+.legend-row{display:flex;gap:18px;flex-wrap:wrap;margin:10px 0;font-size:13px;align-items:center}
+.btn{border:0;border-radius:3px;padding:10px 22px;font-size:14px;font-weight:bold}
+.btn-primary{background:#0f96c7;color:#fff}
+.btn-green{background:#2eaa5a;color:#fff}
+.btn-purple{background:#7b4cb8;color:#fff}
+.btn-light{background:#e3ecf2;color:#234;border:1px solid #b9c8d3}
+.btn-blue{background:#1d5fa8;color:#fff}
+/* ---------- palette shapes ---------- */
+.pal{display:grid;grid-template-columns:repeat(5,1fr);gap:10px 8px;justify-items:center}
+.pb{width:40px;height:34px;border:0;font-size:14px;font-weight:bold;color:#fff;position:relative}
+.nv{background:#dfe3e6;color:#333;border:1px solid #b8bec3;border-radius:4px}
+.na{background:#e0463a;border-radius:4px 4px 16px 16px}
+.an{background:#2eaa5a;border-radius:16px 16px 4px 4px}
+.mr{background:#7b4cb8;border-radius:50%;width:36px;height:36px}
+.ar{background:#7b4cb8;border-radius:50%;width:36px;height:36px}
+.ar::after{content:"";position:absolute;right:-1px;bottom:-1px;width:12px;height:12px;border-radius:50%;background:#2eaa5a;border:2px solid #fff}
+.cur{outline:3px solid #f5a623;outline-offset:1px}
+.lg{display:inline-flex;align-items:center;gap:6px}
+.lg .pb{width:28px;height:26px;font-size:12px;pointer-events:none}
+.lg .mr,.lg .ar{width:27px;height:27px}
+/* ---------- test screen ---------- */
+#test{display:flex;flex-direction:column;min-height:100vh}
+.topbar{background:#0f96c7;color:#fff;padding:10px 18px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.topbar h2{font-size:16px}
+.topbar .sub{font-size:12px;opacity:.9}
+.timer{background:#fff;color:#c0392b;font-weight:bold;padding:6px 14px;border-radius:4px;font-size:17px;font-variant-numeric:tabular-nums}
+.sectionbar{background:#fff;border-bottom:1px solid #d5dde3;padding:8px 18px;font-size:13px;display:flex;gap:10px;align-items:center}
+.sectionbar span{background:#1d6a8a;color:#fff;padding:7px 38px;border-radius:3px;font-weight:bold}
+.layout{display:flex;flex:1;align-items:stretch}
+.main{flex:1;min-width:0;background:#fff;display:flex;flex-direction:column}
+.qhead{padding:12px 20px;border-bottom:1px solid #e1e6ea;display:flex;justify-content:space-between;font-size:13px;flex-wrap:wrap;gap:6px}
+.qhead b{font-size:15px}
+.qbody{padding:20px 24px;flex:1;overflow:auto}
+.qtext{font-size:16px;line-height:1.6;margin-bottom:18px}
+.opt{display:flex;align-items:flex-start;gap:12px;padding:12px 14px;margin:6px 0;border:1px solid transparent;border-radius:5px;cursor:pointer;font-size:15.5px;line-height:1.45}
+.opt:hover{background:#f3f9fc}
+.opt input{margin-top:4px;transform:scale(1.2)}
+.qfoot{border-top:1px solid #dfe4e8;background:#f6f8fa;padding:12px 20px;display:flex;gap:10px;flex-wrap:wrap}
+.qfoot .sp{flex:1}
+.side{width:310px;background:#dcebf4;border-left:1px solid #c3d6e2;display:flex;flex-direction:column}
+.side .prof{background:#fff;padding:12px;display:flex;gap:10px;align-items:center;border-bottom:1px solid #cdd}
+.avatar{width:42px;height:42px;border-radius:50%;background:#0f96c7;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:18px}
+.side .legend{padding:10px 12px;display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:12px;border-bottom:1px solid #c3d6e2}
+.side .sec{background:#a9cfe3;padding:7px 12px;font-weight:bold;font-size:13px}
+.side .palwrap{padding:14px 10px;overflow:auto;flex:1}
+.side .submitbox{padding:10px;background:#cfe2ee}
+table.dt{border-collapse:collapse;margin:10px 0;font-size:14px}
+table.dt th,table.dt td{border:1px solid #9aa;padding:5px 10px;text-align:center}
+table.dt th{background:#e6f0f6}
+/* ---------- modal ---------- */
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;z-index:50;padding:14px}
+.mbox{background:#fff;border-radius:6px;max-width:680px;width:100%;max-height:90vh;overflow:auto;padding:22px}
+.mbox h3{margin-bottom:12px;color:#0f6f93}
+.mbox table{width:100%;border-collapse:collapse;margin:8px 0 14px;font-size:14px}
+.mbox th,.mbox td{border:1px solid #cfd8e0;padding:7px 10px;text-align:center}
+.mbox th{background:#eaf4f9}
+.mbox td:first-child,.mbox th:first-child{text-align:left}
+/* ---------- result (Testbook-style) ---------- */
+#result .topbar{background:#0f96c7}
+#result .topbar .back{font-size:24px;margin-right:10px}
+#result .topbar .ttl{display:flex;align-items:center}
+#result .an-btn{background:#0b83ae;padding:14px 22px;font-weight:bold;font-size:14px;border-radius:3px}
+.rqhead{padding:14px 20px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:13px;border-bottom:1px solid #e3e8ec}
+.rqhead b{font-size:15px}
+.badge{padding:3px 10px;border-radius:12px;font-size:12px;font-weight:bold;color:#fff}
+.b-ok{background:#2eaa5a}.b-bad{background:#c0392b}.b-skip{background:#777}
+.mk{background:#777;color:#fff;border-radius:10px;padding:2px 8px;font-size:12px;font-weight:bold}
+.ropt{display:flex;align-items:center;gap:12px;padding:12px 14px;margin:6px 0;border-radius:5px;border:1px solid transparent;font-size:15.5px}
+.ropt .rd{width:16px;height:16px;border:2px solid #777;border-radius:50%;flex:none;position:relative}
+.ropt.you .rd::after{content:"";position:absolute;inset:2px;background:#555;border-radius:50%}
+.ropt.right{background:#e6f6ec;border-color:#2eaa5a}
+.ropt.right .rd{border-color:#2eaa5a}
+.ropt.right .rd::after{content:"";position:absolute;inset:2px;background:#2eaa5a;border-radius:50%}
+.ropt.wrong{background:#fdeaea;border-color:#c0392b}
+.ropt.wrong .rd{border-color:#c0392b}
+.ropt.wrong .rd::after{content:"";position:absolute;inset:2px;background:#c0392b;border-radius:50%}
+.tag{margin-left:auto;font-size:12px;font-weight:bold}
+.tag.g{color:#1f8a46}.tag.r{color:#c0392b}
+.reattempt{background:#fdf1e0;border:1px solid #f1dcb9;border-radius:4px;padding:16px 18px;margin:18px 0;max-width:460px}
+.reattempt b{font-size:16px;font-weight:normal;color:#444}
+.reattempt p{font-style:italic;font-size:13px;color:#666;margin-top:4px}
+.vsbtn{background:#fff;border:1px solid #0f96c7;color:#0f96c7;padding:8px 16px;border-radius:3px;font-size:13px}
+.vsrow{display:flex;gap:12px;align-items:center;margin:14px 0;font-size:13px;color:#555;flex-wrap:wrap}
+.solbox{border:1px solid #cfe3ee;background:#f7fbfd;border-radius:5px;padding:16px 18px;margin:8px 0 20px;line-height:1.75;font-size:15px}
+.solbox h4{color:#0f6f93;margin-bottom:6px}
+.solbox .ans{margin-top:10px;font-weight:bold;color:#1f8a46}
+.pie{width:170px;height:170px;border-radius:50%;margin:10px 0}
+.pielegend{font-size:13px;line-height:1.7}
+.pielegend i{display:inline-block;width:11px;height:11px;margin-right:6px;border-radius:2px}
+#result .side .cnt{display:flex;gap:10px;flex-wrap:wrap;padding:10px 12px;font-size:12px;border-bottom:1px solid #c3d6e2;background:#d8eaf4}
+.cnt span{display:inline-flex;align-items:center;gap:5px}
+.cnt em{font-style:normal;color:#fff;padding:1px 6px;border:1px solid #333;font-size:11px}
+.rp{width:40px;height:34px;border:0;font-size:14px;font-weight:bold;position:relative}
+.rp.ok{background:#2eaa5a;color:#fff;border-radius:18px 18px 3px 3px}
+.rp.bad{background:#c0392b;color:#fff;border-radius:18px 18px 3px 3px}
+.rp.skip{background:#fff;color:#222;border:1px solid #333;border-radius:2px}
+.rp.cursel{outline:2px solid #0f6f93;outline-offset:2px}
+@media(max-width:820px){.layout{flex-direction:column}.side{width:100%;border-left:0;border-top:1px solid #c3d6e2}.qbody{padding:14px}}
+</style>
+</head>
+<body>
+
+<!-- =============== INTRO =============== -->
+<div id="intro">
+  <header>
+    <h1>SSC CGL 2026 – Tier-2 Mock 3</h1>
+    <p>Mathematical Abilities (Paper-I, Section-I) • Based on RBE Revolution By Education booklet</p>
+  </header>
+  <div class="body">
+    <div class="meta">
+      <div><b>Questions:</b> 30</div>
+      <div><b>Total Marks:</b> 90</div>
+      <div><b>Duration:</b> 30 minutes</div>
+      <div><b>Marking:</b> +3 correct, −1 wrong</div>
+    </div>
+    <h3>Instructions</h3>
+    <ul>
+      <li>The countdown timer at the top-right shows the remaining time. The test auto-submits when it reaches zero.</li>
+      <li>Click a question number in the palette to jump to it.</li>
+      <li><b>Save &amp; Next</b> saves your answer and moves ahead. <b>Mark for Review &amp; Next</b> flags the question (an answered, marked question is still evaluated).</li>
+      <li><b>Clear Response</b> removes your selected option.</li>
+    </ul>
+    <div class="legend-row">
+      <span class="lg"><span class="pb nv">1</span> Not Visited</span>
+      <span class="lg"><span class="pb na">2</span> Not Answered</span>
+      <span class="lg"><span class="pb an">3</span> Answered</span>
+      <span class="lg"><span class="pb mr">4</span> Marked for Review</span>
+      <span class="lg"><span class="pb ar">5</span> Answered &amp; Marked</span>
+    </div>
+    <p style="margin-top:18px"><button class="btn btn-green" onclick="startTest()">I am ready to begin</button></p>
+  </div>
+</div>
+
+<!-- =============== TEST =============== -->
+<div id="test" class="hidden">
+  <div class="topbar">
+    <div><h2>SSC CGL 2026 Tier-2 Mock 3</h2><div class="sub">Mathematical Abilities</div></div>
+    <div>Time Left: <span class="timer" id="timer">30:00</span></div>
+  </div>
+  <div class="sectionbar"><b>SECTIONS</b><span>Mathematical Abilities</span></div>
+  <div class="layout">
+    <div class="main">
+      <div class="qhead"><b id="qno">Question No. 1</b><span>Marking Scheme: <b style="color:#2eaa5a">+3</b> / <b style="color:#c0392b">−1</b></span></div>
+      <div class="qbody"><div class="qtext" id="qtext"></div><div id="opts"></div></div>
+      <div class="qfoot">
+        <button class="btn btn-purple" onclick="markNext()">Mark for Review &amp; Next</button>
+        <button class="btn btn-light" onclick="clearResp()">Clear Response</button>
+        <button class="btn btn-light" onclick="go(cur-1)">Previous</button>
+        <span class="sp"></span>
+        <button class="btn btn-blue" onclick="saveNext()">Save &amp; Next</button>
+      </div>
+    </div>
+    <div class="side">
+      <div class="legend" id="legend"></div>
+      <div class="sec">Mathematical Abilities</div>
+      <div class="palwrap"><div class="pal" id="pal"></div></div>
+      <div class="submitbox"><button class="btn btn-green" style="width:100%" onclick="confirmSubmit()">Submit Test</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- =============== RESULT =============== -->
+<div id="result" class="hidden">
+  <div class="topbar">
+    <div class="ttl"><span class="back" style="cursor:pointer" onclick="showSummary()">☰</span>
+      <div><h2>Tests</h2><div class="sub">SSC CGL 2026 Tier-2 Mock 3 – Maths • Solutions &amp; Analysis</div></div></div>
+    <div class="an-btn" style="cursor:pointer" onclick="showSummary()">ANALYTICS</div>
+  </div>
+  <div class="sectionbar"><b>SECTIONS</b><span>Test</span>
+    <span style="background:none;color:#222;margin-left:auto;padding:0;font-weight:normal">Score: <b id="scoreTop"></b></span></div>
+  <div class="layout">
+    <div class="main">
+      <div class="rqhead" id="rhead"></div>
+      <div class="qbody">
+        <div class="qtext" id="rtext"></div>
+        <div id="ropts"></div>
+        <div class="vsrow"><button class="vsbtn" onclick="toggleSol()">👁 View Solution</button><span>Click here to see the answer now</span></div>
+        <div id="rsol" class="hidden"></div>
+      </div>
+      <div class="qfoot">
+        <button class="btn btn-light" onclick="rgo(rc-1)">Previous</button>
+        <span class="sp"></span>
+        <button class="btn btn-light" onclick="rgo(rc+1)">Next</button>
+      </div>
+    </div>
+    <div class="side">
+      <div class="cnt" id="rcnt"></div>
+      <div class="sec">SECTION : Test</div>
+      <div class="palwrap"><div class="pal" id="rpal"></div></div>
+      <div class="submitbox" style="display:flex;gap:8px">
+        <button class="btn btn-light" style="flex:1" onclick="showSummary()">Summary</button>
+        <button class="btn btn-light" style="flex:1" onclick="location.reload()">Retake</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="modal" class="modal hidden"><div class="mbox" id="mbox"></div></div>
+
+<script>
+/* ===== CONFIG ===== */
+var MARK_RIGHT = 3, MARK_WRONG = 1, DURATION = 1800; // seconds
+
+/* ===== QUESTION DATA ===== */
+function pieQ10(){
+  return '<div class="pie" style="background:conic-gradient(#1b3a5c 0 35%,#2b6cb0 35% 53%,#2f9a94 53% 68%,#d69e2e 68% 76%,#c53030 76% 100%)"></div>'+
+  '<div class="pielegend"><i style="background:#1b3a5c"></i>Organic – 35% (8,400 tonnes)<br><i style="background:#2b6cb0"></i>Plastic – 18%<br><i style="background:#2f9a94"></i>Paper – 15%<br><i style="background:#d69e2e"></i>Glass – 8%<br><i style="background:#c53030"></i>Others – 24%</div>';
+}
+var Q = [
+{c:"Number System",q:"The difference between a two-digit number and the number obtained by reversing its digits is 36. If the sum of the digits of the number is 12, what is the product of the digits of the number?",
+ o:["24","28","32","36"],a:2,
+ s:"Let the number be 10x + y. Difference with reversal = 9(x − y) = 36 ⇒ x − y = 4.<br>x + y = 12 ⇒ x = 8, y = 4.<br>Product = 8 × 4 = <b>32</b>."},
+{c:"Algebra",q:"If x⁴ + 1/x⁴ = 194 and x > 0, then what is the value of x + 1/x?",
+ o:["2","4","6","8"],a:1,
+ s:"(x² + 1/x²)² = 194 + 2 = 196 ⇒ x² + 1/x² = 14.<br>(x + 1/x)² = 14 + 2 = 16 ⇒ x + 1/x = <b>4</b>."},
+{c:"Simple Interest",q:"A certain sum of money invested at simple interest amounts to Rs. 7,200 in 4 years and to Rs. 8,400 in 6 years. If the same principal is invested for 5 years at a 2 percentage points higher rate of interest per annum, what will be the total amount received?",
+ o:["Rs. 7,980","Rs. 8,180","Rs. 8,280","Rs. 8,480"],a:2,
+ s:"SI for 2 years = 8400 − 7200 = 1200 ⇒ SI per year = 600.<br>P = 7200 − 4 × 600 = Rs. 4,800 ⇒ R = 600/4800 × 100 = 12.5%.<br>New rate = 14.5%. SI = 4800 × 14.5 × 5/100 = 3,480.<br>Amount = 4800 + 3480 = <b>Rs. 8,280</b>."},
+{c:"Mensuration",q:"The circumference of the base of a cylindrical drum is 176 cm and its curved surface area is 10,560 cm². How many litres of water can it hold? (Take π = 22/7 and 1 litre = 1000 cm³)",
+ o:["138.24 litres","147.84 litres","152.64 litres","156.48 litres"],a:1,
+ s:"2πr = 176 ⇒ r = 28 cm.<br>Volume = CSA × r/2 = 10560 × 14 = 1,47,840 cm³.<br>Capacity = 147840/1000 = <b>147.84 litres</b>."},
+{c:"Geometry",q:"A circle has its centre at O. AB is a chord of the circle, and C is a point on the major segment such that ∠ACB = 48°. If points O, A and O, B are joined, what is the measure of ∠OAB?",
+ o:["38°","42°","44°","48°"],a:1,
+ s:"∠AOB = 2 × ∠ACB = 96°.<br>OA = OB ⇒ ∠OAB = ∠OBA = (180° − 96°)/2 = <b>42°</b>.<br><i>Shortcut: ∠OAB = 90° − 48° = 42°.</i>"},
+{c:"Mensuration",q:"A certain number of identical solid metallic spheres, each of radius 3 cm, are melted together to cast a solid cylindrical rod of radius 6 cm and length (height) 48 cm. If 20% of the metal is lost during the melting and casting process, how many spheres were melted?",
+ o:["50","55","60","65"],a:2,
+ s:"Volume of one sphere = (4/3)π(3)³ = 36π cm³.<br>Usable metal = 80% = 4/5 of n × 36π.<br>Cylinder = π × 6² × 48 = 36 × 48π.<br>(4/5) n = 48 ⇒ n = <b>60</b>."},
+{c:"Geometry",q:"In ΔABC, the three interior angles are ∠A = (x + 20)°, ∠B = (x + 50)° and ∠C = (2x − 10)°. The internal bisectors of ∠B and ∠C meet at point I (the incentre). What is the value of (∠BIC − ∠A)?",
+ o:["55°","60°","65°","70°"],a:2,
+ s:"(x + 20) + (x + 50) + (2x − 10) = 180 ⇒ 4x = 120 ⇒ x = 30 ⇒ ∠A = 50°.<br>∠BIC = 90° + A/2 = 115°.<br>∠BIC − ∠A = 115° − 50° = <b>65°</b>."},
+{c:"Percentage",q:"The price of a commodity first increases by 25%, then decreases by 20%, and subsequently decreases again by 20%. The final price is Rs. 960 less than the original price. What was the original price of the commodity?",
+ o:["Rs. 4,200","Rs. 4,500","Rs. 4,800","Rs. 5,400"],a:2,
+ s:"+25% then −20%: (5/4) × (4/5) = 1, so the first two changes cancel.<br>Net effect = the last 20% decrease = 20% of P = 960.<br>P = 960 × 5 = <b>Rs. 4,800</b>."},
+{c:"Trigonometry",q:"Evaluate the trigonometric expression (0° &lt; θ &lt; 90°):<br>[ ((csc θ − cot θ)² + 1) / (2(csc θ − cot θ)) ] × sin θ",
+ o:["0","1","2","csc²θ"],a:1,
+ s:"Put θ = 30°: csc θ − cot θ = 2 − √3.<br>(2 − √3)² + 1 = 8 − 4√3 = 4(2 − √3).<br>Fraction = 4(2 − √3) / 2(2 − √3) = 2; × sin30° = 2 × ½ = <b>1</b>.<br><i>Identity method: csc θ − cot θ = tan(θ/2), and (u² + 1)/2u = 1/sin θ, so the product is 1.</i>"},
+{c:"Data Interpretation",q:"The pie chart displays the percentage distribution of waste collected by a municipal corporation in a month. Organic waste constitutes 35% of the total waste, corresponding to 8,400 tonnes. The collection percentages for other categories are: Plastic = 18%, Paper = 15%, Glass = 8% and Others = 24%. By how many tonnes does the combined quantity of Plastic and Glass waste exceed the quantity of Paper waste?",
+ o:["2,420 tonnes","2,540 tonnes","2,640 tonnes","2,760 tonnes"],a:2,
+ s:"35% = 8400 tonnes ⇒ 1% = 240 tonnes.<br>Plastic + Glass = 18% + 8% = 26%; Paper = 15%.<br>Difference = 11% = 11 × 240 = <b>2,640 tonnes</b>.<br>"+pieQ10()},
+{c:"Geometry",q:"In ΔABC, D and E are points on sides AB and AC respectively such that DE ∥ BC. The perimeter of ΔADE is 48 cm and the perimeter of ΔABC is 60 cm. If the area of ΔABC is 100 cm², what is the area of the trapezium DEBC?",
+ o:["28 cm²","32 cm²","36 cm²","40 cm²"],a:2,
+ s:"ΔADE ∼ ΔABC with ratio of sides = 48/60 = 4/5.<br>Area ratio = 16/25 ⇒ Area(ADE) = 64 cm².<br>Trapezium DEBC = 100 − 64 = <b>36 cm²</b>."},
+{c:"Time, Speed & Distance",q:"A student travels from his home to school (outward) and returns from school to home (return). On the outward journey, he walks at 5/6 of his usual outward speed and takes 8 minutes more than his usual outward time. On the return journey, he walks at 4/3 of his usual return speed and takes 12 minutes less than his usual return time. What is the sum of his usual outward journey time and usual return journey time (in minutes)?",
+ o:["80 minutes","84 minutes","88 minutes","92 minutes"],a:2,
+ s:"Outward: speed ratio 5/6 ⇒ time ratio 6/5; 1 unit = 8 min ⇒ usual time = 5 units = 40 min.<br>Return: speed ratio 4/3 ⇒ time ratio 3/4; 1 unit = 12 min ⇒ usual time = 4 units = 48 min.<br>Sum = 40 + 48 = <b>88 minutes</b>."},
+{c:"Number System",q:"Find the sum of the digits of the greatest five-digit number which, when divided by 8, 12 and 15, leaves remainders of 5, 9 and 12, respectively.",
+ o:["33","36","39","42"],a:2,
+ s:"8 − 5 = 12 − 9 = 15 − 12 = 3, so N = LCM × m − 3.<br>LCM(8, 12, 15) = 120. 99999 = 120 × 833 + 39 ⇒ largest multiple = 99,960.<br>N = 99,960 − 3 = 99,957.<br>Sum of digits = 9 + 9 + 9 + 5 + 7 = <b>39</b>."},
+{c:"Data Interpretation",q:"The table below shows the foreign tourist arrivals (in thousands) from five countries in 2024 and 2025:<table class='dt'><tr><th>Country</th><th>USA</th><th>UK</th><th>France</th><th>Germany</th><th>Japan</th></tr><tr><th>Arrivals in 2024 (in '000s)</th><td>240</td><td>130</td><td>160</td><td>110</td><td>120</td></tr><tr><th>Arrivals in 2025 (in '000s)</th><td>260</td><td>150</td><td>180</td><td>120</td><td>140</td></tr></table>By what percentage are the total arrivals from UK, France and Germany in 2025 greater than the total arrivals from USA and Japan in 2024?",
+ o:["20%","25%","30%","33.33%"],a:1,
+ s:"UK + France + Germany (2025) = 150 + 180 + 120 = 450.<br>USA + Japan (2024) = 240 + 120 = 360.<br>Percentage = (450 − 360)/360 × 100 = <b>25%</b>."},
+{c:"Algebra",q:"If x = (√5 + √3)/(√5 − √3), find the value of (x² + 1/x²) − 3(x + 1/x).",
+ o:["32","35","38","42"],a:2,
+ s:"x + 1/x = 2(a² + b²)/(a² − b²) = 2(5 + 3)/(5 − 3) = 8.<br>x² + 1/x² = 8² − 2 = 62.<br>Value = 62 − 3 × 8 = <b>38</b>."},
+{c:"Profit & Loss",q:"A trader purchased 120 kg of rice at Rs. 50 per kg. He sold 40% of the rice at a profit of 15%, half of the remaining quantity at a profit of 20%, and the rest at a loss of 5%. What is his overall profit percentage on the transaction?",
+ o:["9.5%","10%","10.5%","11.5%"],a:2,
+ s:"Use weighted percentages (quantity and rate do not matter):<br>40% at +15% ⇒ +6.0%.<br>30% at +20% ⇒ +6.0%.<br>30% at −5% ⇒ −1.5%.<br>Net profit = 6 + 6 − 1.5 = <b>10.5%</b>."},
+{c:"Geometry",q:"The perimeter of a rhombus ABCD is 56 cm and ∠ABC = 120°. What is the value of AC²?",
+ o:["548","576","588","612"],a:2,
+ s:"Side = 56/4 = 14 cm.<br>In ΔABC: AB = BC = 14 and ∠B = 120°, so AC = 14√3.<br>AC² = 196 × 3 = <b>588</b>.<br><i>Cosine rule: AC² = 14² + 14² − 2(14)(14)cos120° = 196 + 196 + 196 = 588.</i>"},
+{c:"Partnership",q:"P, Q and R enter into a business partnership by investing capitals for the same time period. The ratio of their profits is 4 : 7 : 9. If Q's capital investment is Rs. 1,05,000, what is the total capital invested by P, Q and R together?",
+ o:["Rs. 2,70,000","Rs. 2,85,000","Rs. 3,00,000","Rs. 3,15,000"],a:2,
+ s:"Same time ⇒ capital ratio = profit ratio = 4 : 7 : 9.<br>7k = 1,05,000 ⇒ k = 15,000.<br>Total = 20k = <b>Rs. 3,00,000</b>."},
+{c:"Simplification",q:"A drum contains 18.75 litres of oil. A cook removes 3 4/5 litres of oil. Subsequently, 0.45 litres leaks out through a puncture. Finally, 1/5 of whatever is left is used for frying. How much oil remains in the drum?",
+ o:["10.8 litres","11.2 litres","11.6 litres","12.4 litres"],a:2,
+ s:"3 4/5 = 3.8 litres. Removed + leaked = 3.8 + 0.45 = 4.25.<br>Remaining = 18.75 − 4.25 = 14.50 litres.<br>After frying: 14.5 × 4/5 = <b>11.6 litres</b>."},
+{c:"Mensuration",q:"The total surface area of a solid sphere is 2,464 cm². What is the diameter of the sphere? (Take π = 22/7)",
+ o:["14 cm","21 cm","28 cm","35 cm"],a:2,
+ s:"4πr² = 2464 ⇒ πr² = 616 ⇒ r² = 196 ⇒ r = 14 cm.<br>Diameter = 2 × 14 = <b>28 cm</b>."},
+{c:"Time & Work",q:"A man is twice as efficient as a woman, and a woman is thrice as efficient as a child. 8 men and 6 women working together can complete a piece of work in 9 days. In how many days can 4 men, 6 women and 12 children complete the same work?",
+ o:["9 days","10 days","11 days","12 days"],a:2,
+ s:"Child = 1, woman = 3, man = 6 units/day.<br>8 men + 6 women = 48 + 18 = 66 units/day ⇒ Work = 66 × 9 = 594.<br>4 men + 6 women + 12 children = 24 + 18 + 12 = 54 units/day.<br>Time = 594/54 = <b>11 days</b>."},
+{c:"Statistics",q:"If the variance of the first n even natural numbers is 56, what is the variance of the first n natural numbers?",
+ o:["12","14","16","28"],a:1,
+ s:"The first n natural numbers = ½ × (first n even natural numbers).<br>Var(aX) = a² Var(X) ⇒ Var = (1/2)² × 56 = <b>14</b>."},
+{c:"Probability",q:"A box contains 5 white, 4 black and 3 red balls. A ball is drawn at random, its colour is noted, and it is replaced back into the box. A second ball is then drawn at random. What is the probability that both balls drawn are of different colours?",
+ o:["25/72","35/72","47/72","53/72"],a:2,
+ s:"Total balls = 12. P(same colour) = (25 + 16 + 9)/144 = 50/144 = 25/72.<br>P(different colours) = 1 − 25/72 = <b>47/72</b>."},
+{c:"Statistics",q:"The mode of the following grouped frequency distribution is 24:<table class='dt'><tr><th>Class Interval</th><th>0–10</th><th>10–20</th><th>20–30</th><th>30–40</th><th>40–50</th></tr><tr><th>Frequency</th><td>8</td><td>15</td><td>x</td><td>12</td><td>6</td></tr></table>What is the total number of observations in this distribution?",
+ o:["54","58","62","66"],a:2,
+ s:"Modal class = 20–30: L = 20, h = 10, f₁ = x, f₀ = 15, f₂ = 12.<br>24 = 20 + [(x − 15)/(2x − 27)] × 10 ⇒ 4(2x − 27) = 10(x − 15).<br>8x − 108 = 10x − 150 ⇒ x = 21.<br>N = 8 + 15 + 21 + 12 + 6 = <b>62</b>."},
+{c:"Averages",q:"The average age of 24 students in a class is 14 years. When the class teacher and a lab assistant join the group, the overall average age increases by 1.5 years. If the teacher is 9 years older than the lab assistant, what is the age of the class teacher?",
+ o:["34 years","36 years","38 years","42 years"],a:2,
+ s:"Original total = 24 × 14 = 336. New total = 26 × 15.5 = 403.<br>T + L = 403 − 336 = 67; T − L = 9.<br>T = (67 + 9)/2 = <b>38 years</b>."},
+{c:"Ratio",q:"Two numbers are in the ratio 7 : 11. If 9 is added to each of the numbers, the ratio becomes 5 : 7. What is the difference between the two original numbers?",
+ o:["8","12","16","20"],a:1,
+ s:"The difference stays constant: 4 units (7 : 11) = 2 units (5 : 7).<br>Scale 5 : 7 to 10 : 14 (difference 4). Increase = 10 − 7 = 3 units = 9 ⇒ 1 unit = 3.<br>Difference = 4 × 3 = <b>12</b>."},
+{c:"Mixtures & Alligation",q:"Vessel A contains 15 litres of a mixture of milk and water in the ratio 3 : 2. Vessel B contains 20 litres of a mixture of milk and water in the ratio 4 : 1. If the entire contents of both vessels are mixed together in a drum, what is the fraction of water in the final mixture?",
+ o:["1/5","2/7","3/7","4/9"],a:1,
+ s:"Water in A = 2/5 × 15 = 6 L; water in B = 1/5 × 20 = 4 L.<br>Total water = 10 L; total volume = 35 L.<br>Fraction = 10/35 = <b>2/7</b>."},
+{c:"Profit & Loss",q:"A shopkeeper purchased an article for Rs. 1,800. He wants to earn a profit of 25% after offering two successive discounts of 20% and 10% on the marked price. What should be the marked price of the article?",
+ o:["Rs. 2,875","Rs. 3,000","Rs. 3,125","Rs. 3,250"],a:2,
+ s:"SP = 1800 × 5/4 = Rs. 2,250.<br>SP = MP × (4/5) × (9/10) = 0.72 MP.<br>MP = 2250/0.72 = <b>Rs. 3,125</b>."},
+{c:"Trigonometry",q:"If sin⁶θ + cos⁶θ = 5/8 (where 0° &lt; θ &lt; 90°), what is the value of (sin⁴θ + cos⁴θ)?",
+ o:["1/2","5/8","3/4","7/8"],a:2,
+ s:"sin⁶θ + cos⁶θ = 1 − 3 sin²θ cos²θ = 5/8 ⇒ sin²θ cos²θ = 1/8.<br>sin⁴θ + cos⁴θ = 1 − 2 sin²θ cos²θ = 1 − 2/8 = <b>3/4</b>."},
+{c:"Mensuration",q:"A large square sheet of paper has an area of 1,296 cm². It is cut into the maximum possible number of identical smaller square pieces, each having a side length of 6 cm. What is the sum of the perimeters of all these smaller square pieces combined?",
+ o:["720 cm","792 cm","864 cm","936 cm"],a:2,
+ s:"Side of sheet = √1296 = 36 cm ⇒ pieces = 6 × 6 = 36 (no wastage).<br>Perimeter of each = 24 cm.<br>Total = 36 × 24 = <b>864 cm</b>."}
+];
+
+/* ===== STATE ===== */
+var N = Q.length, cur = 0, rc = 0, remaining = DURATION, tick = null;
+var ans = [], visited = [], marked = [], tspent = [], name = "Candidate", submitted = false;
+for (var i=0;i<N;i++){ans.push(null);visited.push(false);marked.push(false);tspent.push(0);}
+var L = ["A","B","C","D"];
+function $(id){return document.getElementById(id);}
+function fmt(s){s=Math.max(0,Math.round(s));var m=Math.floor(s/60),r=s%60;return (m<10?"0":"")+m+":"+(r<10?"0":"")+r;}
+
+/* ===== TEST ===== */
+function startTest(){
+  $("intro").classList.add("hidden"); $("test").classList.remove("hidden");
+  renderTest();
+  tick = setInterval(function(){
+    remaining--; tspent[cur]++;
+    $("timer").textContent = fmt(remaining);
+    if (remaining<=0){ clearInterval(tick); finish(); }
+  },1000);
+}
+function stateOf(i){
+  if (!visited[i]) return "nv";
+  var a = ans[i]!==null, m = marked[i];
+  if (a&&m) return "ar"; if (m) return "mr"; if (a) return "an"; return "na";
+}
+function renderTest(){
+  visited[cur]=true;
+  var q=Q[cur];
+  $("qno").textContent="Question No. "+(cur+1);
+  $("qtext").innerHTML=q.q;
+  var h="";
+  q.o.forEach(function(t,i){
+    h+='<label class="opt"><input type="radio" name="o" '+(ans[cur]===i?"checked":"")+' onchange="ans['+cur+']='+i+';renderPal()"><span><b>('+L[i]+')</b>&nbsp; '+t+'</span></label>';
+  });
+  $("opts").innerHTML=h;
+  renderPal();
+}
+function renderPal(){
+  var h="",c={nv:0,na:0,an:0,mr:0,ar:0};
+  for (var i=0;i<N;i++){var s=stateOf(i);c[s]++;h+='<button class="pb '+s+(i===cur?" cur":"")+'" onclick="go('+i+')">'+(i+1)+'</button>';}
+  $("pal").innerHTML=h;
+  $("legend").innerHTML=
+   '<span class="lg"><span class="pb an">'+c.an+'</span>Answered</span>'+
+   '<span class="lg"><span class="pb na">'+c.na+'</span>Not Answered</span>'+
+   '<span class="lg"><span class="pb nv">'+c.nv+'</span>Not Visited</span>'+
+   '<span class="lg"><span class="pb mr">'+c.mr+'</span>Marked</span>'+
+   '<span class="lg" style="grid-column:1/3"><span class="pb ar">'+c.ar+'</span>Answered &amp; Marked (will be evaluated)</span>';
+}
+function go(i){ if(i<0||i>=N) return; cur=i; renderTest(); }
+function saveNext(){ marked[cur]=marked[cur]; if(cur<N-1) go(cur+1); else renderPal(); }
+function markNext(){ marked[cur]=true; if(cur<N-1) go(cur+1); else renderPal(); }
+function clearResp(){ ans[cur]=null; marked[cur]=false; renderTest(); }
+
+function confirmSubmit(){
+  var a=0; ans.forEach(function(x){if(x!==null)a++;});
+  $("mbox").innerHTML='<h3>Submit Test?</h3><p style="line-height:1.7">Answered: <b>'+a+'</b> &nbsp;|&nbsp; Not answered: <b>'+(N-a)+'</b> &nbsp;|&nbsp; Time left: <b>'+fmt(remaining)+'</b></p><p style="margin-top:12px">Once submitted, you cannot change your answers.</p><p style="margin-top:16px;display:flex;gap:10px"><button class="btn btn-green" onclick="finish()">Yes, Submit</button><button class="btn btn-light" onclick="closeModal()">Go Back</button></p>';
+  $("modal").classList.remove("hidden");
+}
+function closeModal(){ $("modal").classList.add("hidden"); }
+
+/* ===== RESULT ===== */
+function statusOf(i){ if(ans[i]===null) return "skip"; return ans[i]===Q[i].a?"ok":"bad"; }
+function stats(){
+  var s={ok:0,bad:0,skip:0,score:0,time:0};
+  for(var i=0;i<N;i++){var t=statusOf(i);s[t]++; s.time+=tspent[i];}
+  s.score = s.ok*MARK_RIGHT - s.bad*MARK_WRONG;
+  return s;
+}
+function finish(){
+  if(submitted) return; submitted=true; clearInterval(tick); closeModal();
+  $("test").classList.add("hidden"); $("result").classList.remove("hidden");
+  var s=stats();
+  $("scoreTop").textContent=s.score+" / "+(N*MARK_RIGHT);
+  $("rcnt").innerHTML='<span><em style="background:#2eaa5a;border-color:#2eaa5a">'+s.ok+'</em> Correct</span><span><em style="background:#fff;color:#000">'+s.skip+'</em> Unattempted</span><span><em style="background:#c0392b;border-color:#c0392b">'+s.bad+'</em> Incorrect</span>';
+  rc=0; renderRes(); window.scrollTo(0,0); showSummary();
+}
+function renderRes(){
+  var q=Q[rc], u=ans[rc], st=statusOf(rc);
+  var mk = st==="ok"?"+"+MARK_RIGHT : (st==="bad"?"−"+MARK_WRONG:"0");
+  var bl = st==="ok"?"Correct":(st==="bad"?"Incorrect":"Skipped");
+  $("rhead").innerHTML='<b>Question No.'+(rc+1)+'</b><span class="badge b-'+st+'">'+bl+'</span><span>⏱ You: <b>'+fmt(tspent[rc])+'</b></span><span style="color:#aaa">|</span><span>Marks <span class="mk" style="background:'+(st==="ok"?"#2eaa5a":st==="bad"?"#c0392b":"#777")+'">'+mk+'</span></span><span style="margin-left:auto;color:#667">Topic: '+q.c+'</span>';
+  $("rtext").innerHTML=q.q;
+  var h="";
+  q.o.forEach(function(t,i){
+    var cls="ropt", tag="";
+    if(i===q.a){cls+=" right"; tag='<span class="tag g">✓ Correct Answer'+(u===i?" (Your Answer)":"")+'</span>';}
+    else if(i===u){cls+=" wrong"; tag='<span class="tag r">✗ Your Answer</span>';}
+    h+='<div class="'+cls+'"><span class="rd"></span><span>('+L[i]+') '+t+'</span>'+tag+'</div>';
+  });
+  $("ropts").innerHTML=h;
+  $("rsol").className="hidden";
+  $("rsol").innerHTML='<div class="solbox"><h4>Solution</h4>'+q.s+'<div class="ans">Hence, option ('+L[q.a]+') is correct.</div></div>';
+  var p="";
+  for(var i=0;i<N;i++){p+='<button class="rp '+statusOf(i)+(i===rc?" cursel":"")+'" onclick="rgo('+i+')">'+(i+1)+'</button>';}
+  $("rpal").innerHTML=p;
+}
+function rgo(i){ if(i<0||i>=N) return; rc=i; renderRes(); }
+function toggleSol(){ $("rsol").classList.toggle("hidden"); }
+
+function showSummary(){
+  var s=stats(), att=s.ok+s.bad, acc=att?Math.round(100*s.ok/att):0;
+  var cats={}, order=[];
+  for(var i=0;i<N;i++){var c=Q[i].c; if(!cats[c]){cats[c]={n:0,ok:0,bad:0,sk:0,t:0};order.push(c);} var o=cats[c]; o.n++; o.t+=tspent[i]; var st=statusOf(i); if(st==="ok")o.ok++; else if(st==="bad")o.bad++; else o.sk++;}
+  var rows="";
+  order.forEach(function(c){var o=cats[c]; rows+='<tr><td>'+c+'</td><td>'+o.n+'</td><td>'+o.ok+'</td><td>'+o.bad+'</td><td>'+o.sk+'</td><td>'+fmt(o.t)+'</td></tr>';});
+  $("mbox").innerHTML='<h3>Result Summary</h3>'+
+   '<table><tr><th>Score</th><th>Attempted</th><th>Correct</th><th>Incorrect</th><th>Accuracy</th><th>Time Used</th></tr><tr><td><b>'+s.score+' / '+(N*MARK_RIGHT)+'</b></td><td>'+att+' / '+N+'</td><td style="color:#1f8a46"><b>'+s.ok+'</b></td><td style="color:#c0392b"><b>'+s.bad+'</b></td><td>'+acc+'%</td><td>'+fmt(s.time)+'</td></tr></table>'+
+   '<p style="font-size:13px;color:#555;margin-bottom:10px">Booklet benchmarks – Mock average: 56.41/90 • Median: 58/90 • 72+ = solid attempt • 75–80+ = top percentile tier.</p>'+
+   '<h3 style="font-size:15px">Topic-wise Analysis</h3><table><tr><th>Topic</th><th>Qs</th><th>Correct</th><th>Wrong</th><th>Skipped</th><th>Time</th></tr>'+rows+'</table>'+
+   '<button class="btn btn-primary" onclick="closeModal()">Review Solutions</button>';
+  $("modal").classList.remove("hidden");
+}
+</script>
+</body>
+</html>

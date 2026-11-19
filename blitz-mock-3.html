@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SSC CGL Blitz Mock 3 – Quantitative Aptitude</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,Helvetica,sans-serif;background:#f2f5f8;color:#222;font-size:15px}
+button{font-family:inherit;cursor:pointer}
+.hidden{display:none!important}
+sub,sup{font-size:.75em}
+/* ---------- intro ---------- */
+#intro{max-width:820px;margin:30px auto;background:#fff;border:1px solid #cfd8e0;border-radius:6px;overflow:hidden}
+#intro header{background:#0f96c7;color:#fff;padding:18px 24px}
+#intro header h1{font-size:20px}
+#intro header p{font-size:13px;opacity:.9;margin-top:4px}
+#intro .body{padding:22px 24px;line-height:1.6}
+#intro ul{margin:10px 0 14px 22px}
+#intro .meta{display:flex;gap:12px;flex-wrap:wrap;margin:12px 0}
+#intro .meta div{background:#eaf6fb;border:1px solid #bfe3f2;border-radius:4px;padding:8px 14px;font-size:13px}
+#intro input{padding:9px 12px;border:1px solid #aab;border-radius:4px;width:260px;font-size:15px}
+.legend-row{display:flex;gap:18px;flex-wrap:wrap;margin:10px 0;font-size:13px;align-items:center}
+.btn{border:0;border-radius:3px;padding:10px 22px;font-size:14px;font-weight:bold}
+.btn-primary{background:#0f96c7;color:#fff}
+.btn-green{background:#2eaa5a;color:#fff}
+.btn-purple{background:#7b4cb8;color:#fff}
+.btn-light{background:#e3ecf2;color:#234;border:1px solid #b9c8d3}
+.btn-blue{background:#1d5fa8;color:#fff}
+/* ---------- palette shapes ---------- */
+.pal{display:grid;grid-template-columns:repeat(5,1fr);gap:10px 8px;justify-items:center}
+.pb{width:40px;height:34px;border:0;font-size:14px;font-weight:bold;color:#fff;position:relative}
+.nv{background:#dfe3e6;color:#333;border:1px solid #b8bec3;border-radius:4px}
+.na{background:#e0463a;border-radius:4px 4px 16px 16px}
+.an{background:#2eaa5a;border-radius:16px 16px 4px 4px}
+.mr{background:#7b4cb8;border-radius:50%;width:36px;height:36px}
+.ar{background:#7b4cb8;border-radius:50%;width:36px;height:36px}
+.ar::after{content:"";position:absolute;right:-1px;bottom:-1px;width:12px;height:12px;border-radius:50%;background:#2eaa5a;border:2px solid #fff}
+.cur{outline:3px solid #f5a623;outline-offset:1px}
+.lg{display:inline-flex;align-items:center;gap:6px}
+.lg .pb{width:28px;height:26px;font-size:12px;pointer-events:none}
+.lg .mr,.lg .ar{width:27px;height:27px}
+/* ---------- test screen ---------- */
+#test{display:flex;flex-direction:column;min-height:100vh}
+.topbar{background:#0f96c7;color:#fff;padding:10px 18px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.topbar h2{font-size:16px}
+.topbar .sub{font-size:12px;opacity:.9}
+.timer{background:#fff;color:#c0392b;font-weight:bold;padding:6px 14px;border-radius:4px;font-size:17px;font-variant-numeric:tabular-nums}
+.sectionbar{background:#fff;border-bottom:1px solid #d5dde3;padding:8px 18px;font-size:13px;display:flex;gap:10px;align-items:center}
+.sectionbar span{background:#1d6a8a;color:#fff;padding:7px 38px;border-radius:3px;font-weight:bold}
+.layout{display:flex;flex:1;align-items:stretch}
+.main{flex:1;min-width:0;background:#fff;display:flex;flex-direction:column}
+.qhead{padding:12px 20px;border-bottom:1px solid #e1e6ea;display:flex;justify-content:space-between;font-size:13px;flex-wrap:wrap;gap:6px}
+.qhead b{font-size:15px}
+.qbody{padding:20px 24px;flex:1;overflow:auto}
+.qtext{font-size:16px;line-height:1.6;margin-bottom:18px}
+.opt{display:flex;align-items:flex-start;gap:12px;padding:12px 14px;margin:6px 0;border:1px solid transparent;border-radius:5px;cursor:pointer;font-size:15.5px;line-height:1.45}
+.opt:hover{background:#f3f9fc}
+.opt input{margin-top:4px;transform:scale(1.2)}
+.qfoot{border-top:1px solid #dfe4e8;background:#f6f8fa;padding:12px 20px;display:flex;gap:10px;flex-wrap:wrap}
+.qfoot .sp{flex:1}
+.side{width:310px;background:#dcebf4;border-left:1px solid #c3d6e2;display:flex;flex-direction:column}
+.side .prof{background:#fff;padding:12px;display:flex;gap:10px;align-items:center;border-bottom:1px solid #cdd}
+.avatar{width:42px;height:42px;border-radius:50%;background:#0f96c7;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:18px}
+.side .legend{padding:10px 12px;display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:12px;border-bottom:1px solid #c3d6e2}
+.side .sec{background:#a9cfe3;padding:7px 12px;font-weight:bold;font-size:13px}
+.side .palwrap{padding:14px 10px;overflow:auto;flex:1}
+.side .submitbox{padding:10px;background:#cfe2ee}
+table.dt{border-collapse:collapse;margin:10px 0;font-size:14px}
+table.dt th,table.dt td{border:1px solid #9aa;padding:5px 10px;text-align:center}
+table.dt th{background:#e6f0f6}
+/* ---------- modal ---------- */
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;z-index:50;padding:14px}
+.mbox{background:#fff;border-radius:6px;max-width:680px;width:100%;max-height:90vh;overflow:auto;padding:22px}
+.mbox h3{margin-bottom:12px;color:#0f6f93}
+.mbox table{width:100%;border-collapse:collapse;margin:8px 0 14px;font-size:14px}
+.mbox th,.mbox td{border:1px solid #cfd8e0;padding:7px 10px;text-align:center}
+.mbox th{background:#eaf4f9}
+.mbox td:first-child,.mbox th:first-child{text-align:left}
+/* ---------- result (Testbook-style) ---------- */
+#result .topbar{background:#0f96c7}
+#result .topbar .back{font-size:24px;margin-right:10px}
+#result .topbar .ttl{display:flex;align-items:center}
+#result .an-btn{background:#0b83ae;padding:14px 22px;font-weight:bold;font-size:14px;border-radius:3px}
+.rqhead{padding:14px 20px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:13px;border-bottom:1px solid #e3e8ec}
+.rqhead b{font-size:15px}
+.badge{padding:3px 10px;border-radius:12px;font-size:12px;font-weight:bold;color:#fff}
+.b-ok{background:#2eaa5a}.b-bad{background:#c0392b}.b-skip{background:#777}
+.mk{background:#777;color:#fff;border-radius:10px;padding:2px 8px;font-size:12px;font-weight:bold}
+.ropt{display:flex;align-items:center;gap:12px;padding:12px 14px;margin:6px 0;border-radius:5px;border:1px solid transparent;font-size:15.5px}
+.ropt .rd{width:16px;height:16px;border:2px solid #777;border-radius:50%;flex:none;position:relative}
+.ropt.you .rd::after{content:"";position:absolute;inset:2px;background:#555;border-radius:50%}
+.ropt.right{background:#e6f6ec;border-color:#2eaa5a}
+.ropt.right .rd{border-color:#2eaa5a}
+.ropt.right .rd::after{content:"";position:absolute;inset:2px;background:#2eaa5a;border-radius:50%}
+.ropt.wrong{background:#fdeaea;border-color:#c0392b}
+.ropt.wrong .rd{border-color:#c0392b}
+.ropt.wrong .rd::after{content:"";position:absolute;inset:2px;background:#c0392b;border-radius:50%}
+.tag{margin-left:auto;font-size:12px;font-weight:bold}
+.tag.g{color:#1f8a46}.tag.r{color:#c0392b}
+.reattempt{background:#fdf1e0;border:1px solid #f1dcb9;border-radius:4px;padding:16px 18px;margin:18px 0;max-width:460px}
+.reattempt b{font-size:16px;font-weight:normal;color:#444}
+.reattempt p{font-style:italic;font-size:13px;color:#666;margin-top:4px}
+.vsbtn{background:#fff;border:1px solid #0f96c7;color:#0f96c7;padding:8px 16px;border-radius:3px;font-size:13px}
+.vsrow{display:flex;gap:12px;align-items:center;margin:14px 0;font-size:13px;color:#555;flex-wrap:wrap}
+.solbox{border:1px solid #cfe3ee;background:#f7fbfd;border-radius:5px;padding:16px 18px;margin:8px 0 20px;line-height:1.75;font-size:15px}
+.solbox h4{color:#0f6f93;margin-bottom:6px}
+.solbox .ans{margin-top:10px;font-weight:bold;color:#1f8a46}
+.pie{width:170px;height:170px;border-radius:50%;margin:10px 0}
+.pielegend{font-size:13px;line-height:1.7}
+.pielegend i{display:inline-block;width:11px;height:11px;margin-right:6px;border-radius:2px}
+#result .side .cnt{display:flex;gap:10px;flex-wrap:wrap;padding:10px 12px;font-size:12px;border-bottom:1px solid #c3d6e2;background:#d8eaf4}
+.cnt span{display:inline-flex;align-items:center;gap:5px}
+.cnt em{font-style:normal;color:#fff;padding:1px 6px;border:1px solid #333;font-size:11px}
+.rp{width:40px;height:34px;border:0;font-size:14px;font-weight:bold;position:relative}
+.rp.ok{background:#2eaa5a;color:#fff;border-radius:18px 18px 3px 3px}
+.rp.bad{background:#c0392b;color:#fff;border-radius:18px 18px 3px 3px}
+.rp.skip{background:#fff;color:#222;border:1px solid #333;border-radius:2px}
+.rp.cursel{outline:2px solid #0f6f93;outline-offset:2px}
+@media(max-width:820px){.layout{flex-direction:column}.side{width:100%;border-left:0;border-top:1px solid #c3d6e2}.qbody{padding:14px}}
+</style>
+</head>
+<body>
+
+<!-- =============== INTRO =============== -->
+<div id="intro">
+  <header>
+    <h1>SSC CGL Blitz Mock 3</h1>
+    <p>Quantitative Aptitude • 30 Questions • Based on Parmar SSC Blitz Mock Series</p>
+  </header>
+  <div class="body">
+    <div class="meta">
+      <div><b>Questions:</b> 30</div>
+      <div><b>Total Marks:</b> 60</div>
+      <div><b>Duration:</b> 30 minutes</div>
+      <div><b>Marking:</b> +2 correct, −0.5 wrong</div>
+    </div>
+    <h3>Instructions</h3>
+    <ul>
+      <li>The countdown timer at the top-right shows the remaining time. The test auto-submits when it reaches zero.</li>
+      <li>Click a question number in the palette to jump to it.</li>
+      <li><b>Save &amp; Next</b> saves your answer and moves ahead. <b>Mark for Review &amp; Next</b> flags the question (an answered, marked question is still evaluated).</li>
+      <li><b>Clear Response</b> removes your selected option.</li>
+    </ul>
+    <div class="legend-row">
+      <span class="lg"><span class="pb nv">1</span> Not Visited</span>
+      <span class="lg"><span class="pb na">2</span> Not Answered</span>
+      <span class="lg"><span class="pb an">3</span> Answered</span>
+      <span class="lg"><span class="pb mr">4</span> Marked for Review</span>
+      <span class="lg"><span class="pb ar">5</span> Answered &amp; Marked</span>
+    </div>
+    <p style="margin-top:18px"><button class="btn btn-green" onclick="startTest()">I am ready to begin</button></p>
+  </div>
+</div>
+
+<!-- =============== TEST =============== -->
+<div id="test" class="hidden">
+  <div class="topbar">
+    <div><h2>SSC CGL Blitz Mock 3</h2><div class="sub">Quantitative Aptitude</div></div>
+    <div>Time Left: <span class="timer" id="timer">30:00</span></div>
+  </div>
+  <div class="sectionbar"><b>SECTIONS</b><span>Quantitative Aptitude</span></div>
+  <div class="layout">
+    <div class="main">
+      <div class="qhead"><b id="qno">Question No. 1</b><span>Marking Scheme: <b style="color:#2eaa5a">+2</b> / <b style="color:#c0392b">−0.5</b></span></div>
+      <div class="qbody"><div class="qtext" id="qtext"></div><div id="opts"></div></div>
+      <div class="qfoot">
+        <button class="btn btn-purple" onclick="markNext()">Mark for Review &amp; Next</button>
+        <button class="btn btn-light" onclick="clearResp()">Clear Response</button>
+        <button class="btn btn-light" onclick="go(cur-1)">Previous</button>
+        <span class="sp"></span>
+        <button class="btn btn-blue" onclick="saveNext()">Save &amp; Next</button>
+      </div>
+    </div>
+    <div class="side">
+      <div class="legend" id="legend"></div>
+      <div class="sec">Quantitative Aptitude</div>
+      <div class="palwrap"><div class="pal" id="pal"></div></div>
+      <div class="submitbox"><button class="btn btn-green" style="width:100%" onclick="confirmSubmit()">Submit Test</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- =============== RESULT =============== -->
+<div id="result" class="hidden">
+  <div class="topbar">
+    <div class="ttl"><span class="back" style="cursor:pointer" onclick="showSummary()">☰</span>
+      <div><h2>Tests</h2><div class="sub">SSC CGL Blitz Mock 3 – Maths • Solutions &amp; Analysis</div></div></div>
+    <div class="an-btn" style="cursor:pointer" onclick="showSummary()">ANALYTICS</div>
+  </div>
+  <div class="sectionbar"><b>SECTIONS</b><span>Test</span>
+    <span style="background:none;color:#222;margin-left:auto;padding:0;font-weight:normal">Score: <b id="scoreTop"></b></span></div>
+  <div class="layout">
+    <div class="main">
+      <div class="rqhead" id="rhead"></div>
+      <div class="qbody">
+        <div class="qtext" id="rtext"></div>
+        <div id="ropts"></div>
+        <div class="vsrow"><button class="vsbtn" onclick="toggleSol()">👁 View Solution</button><span>Click here to see the answer now</span></div>
+        <div id="rsol" class="hidden"></div>
+      </div>
+      <div class="qfoot">
+        <button class="btn btn-light" onclick="rgo(rc-1)">Previous</button>
+        <span class="sp"></span>
+        <button class="btn btn-light" onclick="rgo(rc+1)">Next</button>
+      </div>
+    </div>
+    <div class="side">
+      <div class="cnt" id="rcnt"></div>
+      <div class="sec">SECTION : Test</div>
+      <div class="palwrap"><div class="pal" id="rpal"></div></div>
+      <div class="submitbox" style="display:flex;gap:8px">
+        <button class="btn btn-light" style="flex:1" onclick="showSummary()">Summary</button>
+        <button class="btn btn-light" style="flex:1" onclick="location.reload()">Retake</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="modal" class="modal hidden"><div class="mbox" id="mbox"></div></div>
+
+<script>
+/* ===== CONFIG ===== */
+var MARK_RIGHT = 2, MARK_WRONG = 0.5, DURATION = 1800; // seconds
+
+/* ===== QUESTION DATA ===== */
+var Q = [
+{
+"c": "Averages",
+"q": "In a class, the average marks of the boys is 70 and the average marks of the girls is 80. If the average marks of the whole class is 76 and there are 24 boys, how many girls are there in the class?",
+"o": [
+"16",
+"30",
+"40",
+"36"
+],
+"a": 3,
+"s": "Alligation: boys 70, girls 80, mean 76 ⇒ boys : girls = (80 − 76) : (76 − 70) = 4 : 6 = 2 : 3.<br>24 boys = 2 parts ⇒ 1 part = 12 ⇒ girls = 3 × 12 = <b>36</b>."
+},
+{
+"c": "Number System (LCM)",
+"q": "What is the greatest four-digit number which when divided by 15, 18 and 24 leaves a remainder of 11 in each case?",
+"o": [
+"9731",
+"9742",
+"9719",
+"9751"
+],
+"a": 0,
+"s": "LCM(15, 18, 24) = 360.<br>Greatest 4-digit multiple of 360: 9999 ÷ 360 = 27 (rem. 279) ⇒ 360 × 27 = 9720.<br>Required number = 9720 + 11 = <b>9731</b>."
+},
+{
+"c": "Time & Work",
+"q": "A, B, and C can complete a work in 10 days, 20 days, and 30 days, respectively, working alone. A and B work on the first day, A and C work on the second day, and A and B work on the third day, and so on till the work is completed. In how many days will the work be completed?",
+"o": [
+"6 days",
+"7 days",
+"8 days",
+"9 days"
+],
+"a": 1,
+"s": "Total work = LCM = 60 units. A = 6, B = 3, C = 2 units/day.<br>A + B = 9 (odd days), A + C = 8 (even days).<br>First 6 days: 3 × 9 + 3 × 8 = 51 units. Remaining = 9 units.<br>Day 7 (A + B) = 9 units completes the work ⇒ <b>7 days</b>."
+},
+{
+"c": "Time, Speed & Distance",
+"q": "A train A running at a uniform speed crosses a 210 m long bridge in 18 seconds and a 360 m long tunnel in 24 seconds. Another train B of length 160 m is running at a speed of 54 km/h in the opposite direction on a parallel track. In how much time (in seconds) will train A completely cross train B?",
+"o": [
+"8 seconds",
+"10 seconds",
+"12 seconds",
+"15 seconds"
+],
+"a": 1,
+"s": "Extra distance 360 − 210 = 150 m takes 24 − 18 = 6 s ⇒ speed of A = 25 m/s.<br>Length of A = 25 × 18 − 210 = 240 m.<br>Speed of B = 54 × 5/18 = 15 m/s. Relative speed (opposite) = 25 + 15 = 40 m/s.<br>Time = (240 + 160)/40 = <b>10 seconds</b>."
+},
+{
+"c": "Geometry (Polygons)",
+"q": "In a regular polygon, the number of diagonals is three times the number of sides. What is the measure of each interior angle of the polygon?",
+"o": [
+"40°",
+"135°",
+"1440°",
+"140°"
+],
+"a": 3,
+"s": "Diagonals = n(n − 3)/2 = 3n ⇒ n − 3 = 6 ⇒ n = 9.<br>Each interior angle = (n − 2) × 180°/n = 7 × 180°/9 = <b>140°</b>."
+},
+{
+"c": "Trigonometry",
+"q": "If x = 5 sec θ + 3 tan θ and y = 3 sec θ + 5 tan θ, then what is the value of x² − y²?",
+"o": [
+"16",
+"25",
+"9",
+"34"
+],
+"a": 0,
+"s": "x² − y² = (25 sec²θ + 30 sec θ tan θ + 9 tan²θ) − (9 sec²θ + 30 sec θ tan θ + 25 tan²θ)<br>= 16 sec²θ − 16 tan²θ = 16(sec²θ − tan²θ) = <b>16</b>."
+},
+{
+"c": "Number System",
+"q": "What is the last two digits of 327 × 718 × 413?",
+"o": [
+"26",
+"18",
+"28",
+"16"
+],
+"a": 1,
+"s": "Only the last two digits matter at each step:<br>27 × 18 = 486 → 86<br>86 × 13 = 1118 → <b>18</b>."
+},
+{
+"c": "Time & Work",
+"q": "If 18 men working 8 hours a day can complete 3 identical structures in 10 days, then how many men working 6 hours a day are required to complete 5 such structures in 16 days?",
+"o": [
+"20",
+"24",
+"30",
+"25"
+],
+"a": 3,
+"s": "Man-hours for 3 structures = 18 × 8 × 10 = 1440 ⇒ 480 man-hours per structure.<br>5 structures = 2400 man-hours.<br>Men × 6 × 16 = 2400 ⇒ Men = <b>25</b>."
+},
+{
+"c": "Geometry",
+"q": "PT is a tangent to a circle with centre O. The secant PAB from P passes through O and meets the circle at A and B, with A nearer to P. If PT = 8 cm and PA = 4 cm, find the radius of the circle.",
+"o": [
+"12 cm",
+"8 cm",
+"10 cm",
+"6 cm"
+],
+"a": 3,
+"s": "PT² = PA × PB ⇒ 64 = 4 × PB ⇒ PB = 16 cm.<br>Since the secant passes through O, AB is a diameter: AB = 16 − 4 = 12 cm.<br>Radius = <b>6 cm</b>."
+},
+{
+"c": "Algebra",
+"q": "If 2ˣ + 5ʸ = 9 and 2ˣ⁺¹ − 5ʸ = 3, then find the values of x and y.",
+"o": [
+"x = 1, y = 2",
+"x = 2, y = 1",
+"x = 2, y = 2",
+"x = 3, y = 1"
+],
+"a": 1,
+"s": "Let a = 2ˣ, b = 5ʸ: a + b = 9 and 2a − b = 3.<br>Adding: 3a = 12 ⇒ a = 4 ⇒ 2ˣ = 4 ⇒ x = 2.<br>b = 5 ⇒ 5ʸ = 5 ⇒ y = 1.<br>So <b>x = 2, y = 1</b>."
+},
+{
+"c": "Statistics",
+"q": "If the mode of the given data 15, 18, 16, 15, 21, 16, 19, 15, 16 and (x + 4) is 16, then what is the value of x?",
+"o": [
+"11",
+"16",
+"15",
+"12"
+],
+"a": 3,
+"s": "In the given data, 15 occurs 3 times and 16 occurs 3 times (tie).<br>For the mode to be 16, the extra value (x + 4) must be 16 so that 16 occurs 4 times.<br>x + 4 = 16 ⇒ x = <b>12</b>."
+},
+{
+"c": "Probability",
+"q": "The probability of a shooter hitting a target is 1/3. If he fires 4 shots, what is the probability that he hits the target exactly 2 times?",
+"o": [
+"4/27",
+"16/81",
+"8/27",
+"2/9"
+],
+"a": 2,
+"s": "Binomial: P = ⁴C₂ × (1/3)² × (2/3)² = 6 × (1/9) × (4/9) = 24/81 = <b>8/27</b>."
+},
+{
+"c": "Geometry",
+"q": "In triangle ABC, the bisectors of ∠B and ∠C meet at O. A line through O parallel to BC meets AB at D and AC at E. If BD = 5 cm and CE = 4 cm, find DE.",
+"o": [
+"9 cm",
+"1 cm",
+"20 cm",
+"4.5 cm"
+],
+"a": 0,
+"s": "DE ∥ BC ⇒ ∠DOB = ∠OBC = ∠OBD ⇒ DO = DB = 5 cm.<br>Similarly ∠EOC = ∠OCB = ∠OCE ⇒ EO = EC = 4 cm.<br>DE = DO + OE = 5 + 4 = <b>9 cm</b>."
+},
+{
+"c": "Mixture & Profit",
+"q": "A shopkeeper blends two varieties of rice, Type A costing ₹65 per kg and Type B costing ₹85 per kg. He sells 40% of the mixture at ₹92 per kg and the remaining mixture at ₹80.50 per kg, thereby earning an overall profit of 15%. If the total weight of the mixture is 80 kg, what is the quantity of Type A rice used in the mixture?",
+"o": [
+"44 kg",
+"36 kg",
+"48 kg",
+"40 kg"
+],
+"a": 0,
+"s": "Total SP = 32 × 92 + 48 × 80.5 = 2944 + 3864 = ₹6,808.<br>Total CP = 6808/1.15 = ₹5,920 ⇒ average cost = 5920/80 = ₹74 per kg.<br>Alligation (65 and 85, mean 74): A : B = (85 − 74) : (74 − 65) = 11 : 9.<br>A = 80 × 11/20 = <b>44 kg</b>."
+},
+{
+"c": "Discount & Profit",
+"q": "A shopkeeper offers a discount of 15% on the marked price of an article and makes a profit of 19%. If he offers two successive discounts of 20% and 10% on the same marked price, he sells it for ₹455 less than the previous selling price. What is the cost price of the article?",
+"o": [
+"₹2,400",
+"₹2,800",
+"₹2,500",
+"₹3,000"
+],
+"a": 2,
+"s": "Let MP = M. First SP = 0.85M; second SP = 0.8 × 0.9 M = 0.72M.<br>0.85M − 0.72M = 0.13M = 455 ⇒ M = ₹3,500.<br>First SP = 0.85 × 3500 = ₹2,975 = 119% of CP ⇒ CP = 2975/1.19 = <b>₹2,500</b>."
+},
+{
+"c": "Percentage",
+"q": "If 30% of (x + y) = 50% of (x − y), then what percentage of x is equal to y?",
+"o": [
+"20%",
+"25%",
+"40%",
+"400%"
+],
+"a": 1,
+"s": "0.3x + 0.3y = 0.5x − 0.5y ⇒ 0.8y = 0.2x ⇒ y = x/4.<br>y = <b>25%</b> of x."
+},
+{
+"c": "Coordinate Geometry",
+"q": "If the line 3x − 5y = 30 intersects the x-axis at point P and the y-axis at point Q, then what are the coordinates of the midpoint of the line segment PQ?",
+"o": [
+"(5, −3)",
+"(−5, 3)",
+"(5, 3)",
+"(−3, 5)"
+],
+"a": 0,
+"s": "x-axis (y = 0): 3x = 30 ⇒ P = (10, 0).<br>y-axis (x = 0): −5y = 30 ⇒ Q = (0, −6).<br>Midpoint = ((10 + 0)/2, (0 − 6)/2) = <b>(5, −3)</b>."
+},
+{
+"c": "Compound Interest",
+"q": "A man borrowed ₹4,620 and agreed to repay it in two equal annual instalments at an interest rate of 10% per annum, compounded annually. What is the amount (in ₹) of each instalment?",
+"o": [
+"2,541",
+"2,420",
+"2,662",
+"2,772"
+],
+"a": 2,
+"s": "x/(1.1) + x/(1.1)² = 4620 ⇒ x × (10/11 + 100/121) = 4620 ⇒ x × 210/121 = 4620.<br>x = 4620 × 121/210 = 22 × 121 = <b>₹2,662</b>."
+},
+{
+"c": "Trigonometry",
+"q": "What is the simplified value of sin θ/(1 + cos θ) + (1 + cos θ)/sin θ ?",
+"o": [
+"2 sin θ",
+"2 cos θ",
+"2 cosec θ",
+"2 sec θ"
+],
+"a": 2,
+"s": "= [sin²θ + (1 + cos θ)²]/[sin θ (1 + cos θ)] = [sin²θ + 1 + 2cos θ + cos²θ]/[sin θ (1 + cos θ)]<br>= (2 + 2cos θ)/[sin θ (1 + cos θ)] = 2(1 + cos θ)/[sin θ (1 + cos θ)] = 2/sin θ = <b>2 cosec θ</b>."
+},
+{
+"c": "Heights & Distances",
+"q": "Two vertical poles of heights 8 m and 14 m stand on level ground. The angle of elevation of the top of the taller pole from the top of the shorter pole is 30°. Find the distance between the poles.",
+"o": [
+"2√3 m",
+"8√3 m",
+"14√3 m",
+"6√3 m"
+],
+"a": 3,
+"s": "Height difference = 14 − 8 = 6 m.<br>tan 30° = 6/d ⇒ 1/√3 = 6/d ⇒ d = <b>6√3 m</b>."
+},
+{
+"c": "Mensuration (Trapezium)",
+"q": "In a trapezium ABCD, AB is parallel to CD, and the perpendicular distance between them is 12 cm. If AD = BC = 13 cm and AB = 22 cm (where AB < CD), what is the perimeter (in cm) of the trapezium ABCD?",
+"o": [
+"72",
+"80",
+"84",
+"76"
+],
+"a": 1,
+"s": "Horizontal offset on each side = √(13² − 12²) = √25 = 5 cm.<br>CD = AB + 2 × 5 = 22 + 10 = 32 cm.<br>Perimeter = 22 + 32 + 13 + 13 = <b>80 cm</b>."
+},
+{
+"c": "Statistics",
+"q": "The mean of 20 observations is 25. Later it was found that two observations 38 and 37 were wrongly recorded as 83 and 12. Find the correct mean.",
+"o": [
+"26",
+"23.5",
+"25",
+"24"
+],
+"a": 3,
+"s": "Wrong sum = 20 × 25 = 500.<br>Correct sum = 500 − (83 + 12) + (38 + 37) = 500 − 95 + 75 = 480.<br>Correct mean = 480/20 = <b>24</b>."
+},
+{
+"c": "Mensuration",
+"q": "A right prism and a right pyramid have equal volumes. If the area of the base of the pyramid is twice the area of the base of the prism, find the ratio of the height of the prism to the height of the pyramid.",
+"o": [
+"3 : 2",
+"1 : 6",
+"2 : 3",
+"3 : 1"
+],
+"a": 2,
+"s": "Let prism base = B, height = h₁; pyramid base = 2B, height = h₂.<br>B × h₁ = (1/3)(2B)h₂ ⇒ h₁ = (2/3)h₂.<br>h₁ : h₂ = <b>2 : 3</b>."
+},
+{
+"c": "Algebra (Surds)",
+"q": "If x = √(12 + √140) − √(12 − √140), then find the value of x².",
+"o": [
+"16",
+"20",
+"24",
+"28"
+],
+"a": 1,
+"s": "x² = (12 + √140) + (12 − √140) − 2√[(12 + √140)(12 − √140)]<br>= 24 − 2√(144 − 140) = 24 − 2 × 2 = <b>20</b>."
+},
+{
+"c": "Mensuration",
+"q": "The curved surface area of a right circular cylinder is 1320 cm² and the diameter of its base is 21 cm. What is the volume (in cm³) of the cylinder? (Take π = 22/7)",
+"o": [
+"6930",
+"6480",
+"7140",
+"6720"
+],
+"a": 0,
+"s": "CSA = πdh = (22/7) × 21 × h = 66h = 1320 ⇒ h = 20 cm.<br>r = 10.5 cm ⇒ V = (22/7) × (10.5)² × 20 = (22/7) × 110.25 × 20 = <b>6,930 cm³</b>."
+},
+{
+"c": "Algebra",
+"q": "The cost of 7 shirts and 4 pairs of trousers is ₹6,720, while the cost of 3 shirts and 5 pairs of trousers is ₹4,720. What is the total cost of 5 shirts and 3 pairs of trousers?",
+"o": [
+"₹4,880",
+"₹4,720",
+"₹5,040",
+"₹4,960"
+],
+"a": 0,
+"s": "7s + 4t = 6720 and 3s + 5t = 4720.<br>Multiply: 35s + 20t = 33600 and 12s + 20t = 18880 ⇒ 23s = 14720 ⇒ s = 640.<br>t = (6720 − 4480)/4 = 560.<br>5s + 3t = 3200 + 1680 = <b>₹4,880</b>."
+},
+{
+"c": "Simple Interest",
+"q": "A sum of money invested at a certain rate of simple interest per annum becomes 4 times of itself in 18 years. In how many years will it become 6 times of itself at the same rate of simple interest?",
+"o": [
+"25 years",
+"28 years",
+"30 years",
+"32 years"
+],
+"a": 2,
+"s": "Becomes 4 times ⇒ interest = 3P in 18 years ⇒ interest = P per 6 years.<br>Becomes 6 times ⇒ interest = 5P ⇒ time = 5 × 6 = <b>30 years</b>."
+},
+{
+"c": "Simplification",
+"q": "The value of (6.75 × 6.75 × 6.75 − 4.25 × 4.25 × 4.25)/(67.5 × 67.5 + 67.5 × 42.5 + 42.5 × 42.5) is:",
+"o": [
+"2.5",
+"0.25",
+"0.025",
+"0.0025"
+],
+"a": 2,
+"s": "Let a = 6.75, b = 4.25. The denominator = (10a)² + (10a)(10b) + (10b)² = 100(a² + ab + b²).<br>Numerator = a³ − b³ = (a − b)(a² + ab + b²).<br>Value = (a − b)/100 = 2.5/100 = <b>0.025</b>."
+},
+{
+"c": "Statistics",
+"q": "A set of 11 distinct integers is arranged in ascending order as x₁ < x₂ < … < x₁₁ with a median of 50. It is given that x₄ = 41, x₅ = 45, x₇ = 56, and x₈ = 62. If each of the first 5 observations is increased by 8, each of the last 5 observations is decreased by 5, and the 6th observation remains unchanged, what is the median of the new set of 11 observations?",
+"o": [
+"50",
+"53",
+"52",
+"51"
+],
+"a": 3,
+"s": "Median x₆ = 50 (unchanged).<br>First five become x₁ + 8, …, x₅ + 8: x₄ + 8 = 49 and x₅ + 8 = 53, while x₁ + 8, x₂ + 8, x₃ + 8 are below 49.<br>Last five become x₇ − 5 = 51, x₈ − 5 = 57, and the rest are larger.<br>Sorted new set: (x₁+8, x₂+8, x₃+8, 49), 50, 51, 53, 57, … ⇒ 4 values below 50, then 50 (5th) and 51 (6th).<br>New median = 6th term = <b>51</b>."
+},
+{
+"c": "Partnership",
+"q": "A and B start a business. A invests ₹24,000 for the whole year, and B invests ₹36,000 but joins 4 months later. A manages the business and gets 10% of the total profit as commission; the rest is divided in the ratio of their investments (amount × time). If the total profit is ₹17,000, find B's share.",
+"o": [
+"₹7,650",
+"₹9,180",
+"₹6,120",
+"₹8,500"
+],
+"a": 0,
+"s": "A's commission = 10% of 17,000 = ₹1,700 ⇒ remaining profit = ₹15,300.<br>A : B = (24,000 × 12) : (36,000 × 8) = 288000 : 288000 = 1 : 1.<br>B's share = 15,300/2 = <b>₹7,650</b>."
+}
+];
+
+/* ===== STATE ===== */
+var N = Q.length, cur = 0, rc = 0, remaining = DURATION, tick = null;
+var ans = [], visited = [], marked = [], tspent = [], name = "Candidate", submitted = false;
+for (var i=0;i<N;i++){ans.push(null);visited.push(false);marked.push(false);tspent.push(0);}
+var L = ["A","B","C","D"];
+function $(id){return document.getElementById(id);}
+function fmt(s){s=Math.max(0,Math.round(s));var m=Math.floor(s/60),r=s%60;return (m<10?"0":"")+m+":"+(r<10?"0":"")+r;}
+
+/* ===== TEST ===== */
+function startTest(){
+  $("intro").classList.add("hidden"); $("test").classList.remove("hidden");
+  renderTest();
+  tick = setInterval(function(){
+    remaining--; tspent[cur]++;
+    $("timer").textContent = fmt(remaining);
+    if (remaining<=0){ clearInterval(tick); finish(); }
+  },1000);
+}
+function stateOf(i){
+  if (!visited[i]) return "nv";
+  var a = ans[i]!==null, m = marked[i];
+  if (a&&m) return "ar"; if (m) return "mr"; if (a) return "an"; return "na";
+}
+function renderTest(){
+  visited[cur]=true;
+  var q=Q[cur];
+  $("qno").textContent="Question No. "+(cur+1);
+  $("qtext").innerHTML=q.q;
+  var h="";
+  q.o.forEach(function(t,i){
+    h+='<label class="opt"><input type="radio" name="o" '+(ans[cur]===i?"checked":"")+' onchange="ans['+cur+']='+i+';renderPal()"><span><b>('+L[i]+')</b>&nbsp; '+t+'</span></label>';
+  });
+  $("opts").innerHTML=h;
+  renderPal();
+}
+function renderPal(){
+  var h="",c={nv:0,na:0,an:0,mr:0,ar:0};
+  for (var i=0;i<N;i++){var s=stateOf(i);c[s]++;h+='<button class="pb '+s+(i===cur?" cur":"")+'" onclick="go('+i+')">'+(i+1)+'</button>';}
+  $("pal").innerHTML=h;
+  $("legend").innerHTML=
+   '<span class="lg"><span class="pb an">'+c.an+'</span>Answered</span>'+
+   '<span class="lg"><span class="pb na">'+c.na+'</span>Not Answered</span>'+
+   '<span class="lg"><span class="pb nv">'+c.nv+'</span>Not Visited</span>'+
+   '<span class="lg"><span class="pb mr">'+c.mr+'</span>Marked</span>'+
+   '<span class="lg" style="grid-column:1/3"><span class="pb ar">'+c.ar+'</span>Answered &amp; Marked (will be evaluated)</span>';
+}
+function go(i){ if(i<0||i>=N) return; cur=i; renderTest(); }
+function saveNext(){ marked[cur]=marked[cur]; if(cur<N-1) go(cur+1); else renderPal(); }
+function markNext(){ marked[cur]=true; if(cur<N-1) go(cur+1); else renderPal(); }
+function clearResp(){ ans[cur]=null; marked[cur]=false; renderTest(); }
+
+function confirmSubmit(){
+  var a=0; ans.forEach(function(x){if(x!==null)a++;});
+  $("mbox").innerHTML='<h3>Submit Test?</h3><p style="line-height:1.7">Answered: <b>'+a+'</b> &nbsp;|&nbsp; Not answered: <b>'+(N-a)+'</b> &nbsp;|&nbsp; Time left: <b>'+fmt(remaining)+'</b></p><p style="margin-top:12px">Once submitted, you cannot change your answers.</p><p style="margin-top:16px;display:flex;gap:10px"><button class="btn btn-green" onclick="finish()">Yes, Submit</button><button class="btn btn-light" onclick="closeModal()">Go Back</button></p>';
+  $("modal").classList.remove("hidden");
+}
+function closeModal(){ $("modal").classList.add("hidden"); }
+
+/* ===== RESULT ===== */
+function statusOf(i){ if(ans[i]===null) return "skip"; return ans[i]===Q[i].a?"ok":"bad"; }
+function stats(){
+  var s={ok:0,bad:0,skip:0,score:0,time:0};
+  for(var i=0;i<N;i++){var t=statusOf(i);s[t]++; s.time+=tspent[i];}
+  s.score = s.ok*MARK_RIGHT - s.bad*MARK_WRONG;
+  return s;
+}
+function finish(){
+  if(submitted) return; submitted=true; clearInterval(tick); closeModal();
+  $("test").classList.add("hidden"); $("result").classList.remove("hidden");
+  var s=stats();
+  $("scoreTop").textContent=s.score+" / "+(N*MARK_RIGHT);
+  $("rcnt").innerHTML='<span><em style="background:#2eaa5a;border-color:#2eaa5a">'+s.ok+'</em> Correct</span><span><em style="background:#fff;color:#000">'+s.skip+'</em> Unattempted</span><span><em style="background:#c0392b;border-color:#c0392b">'+s.bad+'</em> Incorrect</span>';
+  rc=0; renderRes(); window.scrollTo(0,0); showSummary();
+}
+function renderRes(){
+  var q=Q[rc], u=ans[rc], st=statusOf(rc);
+  var mk = st==="ok"?"+"+MARK_RIGHT : (st==="bad"?"−"+MARK_WRONG:"0");
+  var bl = st==="ok"?"Correct":(st==="bad"?"Incorrect":"Skipped");
+  $("rhead").innerHTML='<b>Question No.'+(rc+1)+'</b><span class="badge b-'+st+'">'+bl+'</span><span>⏱ You: <b>'+fmt(tspent[rc])+'</b></span><span style="color:#aaa">|</span><span>Marks <span class="mk" style="background:'+(st==="ok"?"#2eaa5a":st==="bad"?"#c0392b":"#777")+'">'+mk+'</span></span><span style="margin-left:auto;color:#667">Topic: '+q.c+'</span>';
+  $("rtext").innerHTML=q.q;
+  var h="";
+  q.o.forEach(function(t,i){
+    var cls="ropt", tag="";
+    if(i===q.a){cls+=" right"; tag='<span class="tag g">✓ Correct Answer'+(u===i?" (Your Answer)":"")+'</span>';}
+    else if(i===u){cls+=" wrong"; tag='<span class="tag r">✗ Your Answer</span>';}
+    h+='<div class="'+cls+'"><span class="rd"></span><span>('+L[i]+') '+t+'</span>'+tag+'</div>';
+  });
+  $("ropts").innerHTML=h;
+  $("rsol").className="hidden";
+  $("rsol").innerHTML='<div class="solbox"><h4>Solution</h4>'+q.s+'<div class="ans">Hence, option ('+L[q.a]+') is correct.</div></div>';
+  var p="";
+  for(var i=0;i<N;i++){p+='<button class="rp '+statusOf(i)+(i===rc?" cursel":"")+'" onclick="rgo('+i+')">'+(i+1)+'</button>';}
+  $("rpal").innerHTML=p;
+}
+function rgo(i){ if(i<0||i>=N) return; rc=i; renderRes(); }
+function toggleSol(){ $("rsol").classList.toggle("hidden"); }
+
+function showSummary(){
+  var s=stats(), att=s.ok+s.bad, acc=att?Math.round(100*s.ok/att):0;
+  var cats={}, order=[];
+  for(var i=0;i<N;i++){var c=Q[i].c; if(!cats[c]){cats[c]={n:0,ok:0,bad:0,sk:0,t:0};order.push(c);} var o=cats[c]; o.n++; o.t+=tspent[i]; var st=statusOf(i); if(st==="ok")o.ok++; else if(st==="bad")o.bad++; else o.sk++;}
+  var rows="";
+  order.forEach(function(c){var o=cats[c]; rows+='<tr><td>'+c+'</td><td>'+o.n+'</td><td>'+o.ok+'</td><td>'+o.bad+'</td><td>'+o.sk+'</td><td>'+fmt(o.t)+'</td></tr>';});
+  $("mbox").innerHTML='<h3>Result Summary</h3>'+
+   '<table><tr><th>Score</th><th>Attempted</th><th>Correct</th><th>Incorrect</th><th>Accuracy</th><th>Time Used</th></tr><tr><td><b>'+s.score+' / '+(N*MARK_RIGHT)+'</b></td><td>'+att+' / '+N+'</td><td style="color:#1f8a46"><b>'+s.ok+'</b></td><td style="color:#c0392b"><b>'+s.bad+'</b></td><td>'+acc+'%</td><td>'+fmt(s.time)+'</td></tr></table>'+
+   '<p style="font-size:13px;color:#555;margin-bottom:10px">Benchmark from the series: attempting 22–25 questions is a good attempt and 28 is the max target.</p>'+
+   '<h3 style="font-size:15px">Topic-wise Analysis</h3><table><tr><th>Topic</th><th>Qs</th><th>Correct</th><th>Wrong</th><th>Skipped</th><th>Time</th></tr>'+rows+'</table>'+
+   '<button class="btn btn-primary" onclick="closeModal()">Review Solutions</button>';
+  $("modal").classList.remove("hidden");
+}
+</script>
+</body>
+</html>

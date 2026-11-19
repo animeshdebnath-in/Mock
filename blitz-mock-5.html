@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SSC CGL Blitz Mock 5 – Quantitative Aptitude</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,Helvetica,sans-serif;background:#f2f5f8;color:#222;font-size:15px}
+button{font-family:inherit;cursor:pointer}
+.hidden{display:none!important}
+sub,sup{font-size:.75em}
+/* ---------- intro ---------- */
+#intro{max-width:820px;margin:30px auto;background:#fff;border:1px solid #cfd8e0;border-radius:6px;overflow:hidden}
+#intro header{background:#0f96c7;color:#fff;padding:18px 24px}
+#intro header h1{font-size:20px}
+#intro header p{font-size:13px;opacity:.9;margin-top:4px}
+#intro .body{padding:22px 24px;line-height:1.6}
+#intro ul{margin:10px 0 14px 22px}
+#intro .meta{display:flex;gap:12px;flex-wrap:wrap;margin:12px 0}
+#intro .meta div{background:#eaf6fb;border:1px solid #bfe3f2;border-radius:4px;padding:8px 14px;font-size:13px}
+#intro input{padding:9px 12px;border:1px solid #aab;border-radius:4px;width:260px;font-size:15px}
+.legend-row{display:flex;gap:18px;flex-wrap:wrap;margin:10px 0;font-size:13px;align-items:center}
+.btn{border:0;border-radius:3px;padding:10px 22px;font-size:14px;font-weight:bold}
+.btn-primary{background:#0f96c7;color:#fff}
+.btn-green{background:#2eaa5a;color:#fff}
+.btn-purple{background:#7b4cb8;color:#fff}
+.btn-light{background:#e3ecf2;color:#234;border:1px solid #b9c8d3}
+.btn-blue{background:#1d5fa8;color:#fff}
+/* ---------- palette shapes ---------- */
+.pal{display:grid;grid-template-columns:repeat(5,1fr);gap:10px 8px;justify-items:center}
+.pb{width:40px;height:34px;border:0;font-size:14px;font-weight:bold;color:#fff;position:relative}
+.nv{background:#dfe3e6;color:#333;border:1px solid #b8bec3;border-radius:4px}
+.na{background:#e0463a;border-radius:4px 4px 16px 16px}
+.an{background:#2eaa5a;border-radius:16px 16px 4px 4px}
+.mr{background:#7b4cb8;border-radius:50%;width:36px;height:36px}
+.ar{background:#7b4cb8;border-radius:50%;width:36px;height:36px}
+.ar::after{content:"";position:absolute;right:-1px;bottom:-1px;width:12px;height:12px;border-radius:50%;background:#2eaa5a;border:2px solid #fff}
+.cur{outline:3px solid #f5a623;outline-offset:1px}
+.lg{display:inline-flex;align-items:center;gap:6px}
+.lg .pb{width:28px;height:26px;font-size:12px;pointer-events:none}
+.lg .mr,.lg .ar{width:27px;height:27px}
+/* ---------- test screen ---------- */
+#test{display:flex;flex-direction:column;min-height:100vh}
+.topbar{background:#0f96c7;color:#fff;padding:10px 18px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.topbar h2{font-size:16px}
+.topbar .sub{font-size:12px;opacity:.9}
+.timer{background:#fff;color:#c0392b;font-weight:bold;padding:6px 14px;border-radius:4px;font-size:17px;font-variant-numeric:tabular-nums}
+.sectionbar{background:#fff;border-bottom:1px solid #d5dde3;padding:8px 18px;font-size:13px;display:flex;gap:10px;align-items:center}
+.sectionbar span{background:#1d6a8a;color:#fff;padding:7px 38px;border-radius:3px;font-weight:bold}
+.layout{display:flex;flex:1;align-items:stretch}
+.main{flex:1;min-width:0;background:#fff;display:flex;flex-direction:column}
+.qhead{padding:12px 20px;border-bottom:1px solid #e1e6ea;display:flex;justify-content:space-between;font-size:13px;flex-wrap:wrap;gap:6px}
+.qhead b{font-size:15px}
+.qbody{padding:20px 24px;flex:1;overflow:auto}
+.qtext{font-size:16px;line-height:1.6;margin-bottom:18px}
+.opt{display:flex;align-items:flex-start;gap:12px;padding:12px 14px;margin:6px 0;border:1px solid transparent;border-radius:5px;cursor:pointer;font-size:15.5px;line-height:1.45}
+.opt:hover{background:#f3f9fc}
+.opt input{margin-top:4px;transform:scale(1.2)}
+.qfoot{border-top:1px solid #dfe4e8;background:#f6f8fa;padding:12px 20px;display:flex;gap:10px;flex-wrap:wrap}
+.qfoot .sp{flex:1}
+.side{width:310px;background:#dcebf4;border-left:1px solid #c3d6e2;display:flex;flex-direction:column}
+.side .prof{background:#fff;padding:12px;display:flex;gap:10px;align-items:center;border-bottom:1px solid #cdd}
+.avatar{width:42px;height:42px;border-radius:50%;background:#0f96c7;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:18px}
+.side .legend{padding:10px 12px;display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:12px;border-bottom:1px solid #c3d6e2}
+.side .sec{background:#a9cfe3;padding:7px 12px;font-weight:bold;font-size:13px}
+.side .palwrap{padding:14px 10px;overflow:auto;flex:1}
+.side .submitbox{padding:10px;background:#cfe2ee}
+table.dt{border-collapse:collapse;margin:10px 0;font-size:14px}
+table.dt th,table.dt td{border:1px solid #9aa;padding:5px 10px;text-align:center}
+table.dt th{background:#e6f0f6}
+/* ---------- modal ---------- */
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;z-index:50;padding:14px}
+.mbox{background:#fff;border-radius:6px;max-width:680px;width:100%;max-height:90vh;overflow:auto;padding:22px}
+.mbox h3{margin-bottom:12px;color:#0f6f93}
+.mbox table{width:100%;border-collapse:collapse;margin:8px 0 14px;font-size:14px}
+.mbox th,.mbox td{border:1px solid #cfd8e0;padding:7px 10px;text-align:center}
+.mbox th{background:#eaf4f9}
+.mbox td:first-child,.mbox th:first-child{text-align:left}
+/* ---------- result (Testbook-style) ---------- */
+#result .topbar{background:#0f96c7}
+#result .topbar .back{font-size:24px;margin-right:10px}
+#result .topbar .ttl{display:flex;align-items:center}
+#result .an-btn{background:#0b83ae;padding:14px 22px;font-weight:bold;font-size:14px;border-radius:3px}
+.rqhead{padding:14px 20px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:13px;border-bottom:1px solid #e3e8ec}
+.rqhead b{font-size:15px}
+.badge{padding:3px 10px;border-radius:12px;font-size:12px;font-weight:bold;color:#fff}
+.b-ok{background:#2eaa5a}.b-bad{background:#c0392b}.b-skip{background:#777}
+.mk{background:#777;color:#fff;border-radius:10px;padding:2px 8px;font-size:12px;font-weight:bold}
+.ropt{display:flex;align-items:center;gap:12px;padding:12px 14px;margin:6px 0;border-radius:5px;border:1px solid transparent;font-size:15.5px}
+.ropt .rd{width:16px;height:16px;border:2px solid #777;border-radius:50%;flex:none;position:relative}
+.ropt.you .rd::after{content:"";position:absolute;inset:2px;background:#555;border-radius:50%}
+.ropt.right{background:#e6f6ec;border-color:#2eaa5a}
+.ropt.right .rd{border-color:#2eaa5a}
+.ropt.right .rd::after{content:"";position:absolute;inset:2px;background:#2eaa5a;border-radius:50%}
+.ropt.wrong{background:#fdeaea;border-color:#c0392b}
+.ropt.wrong .rd{border-color:#c0392b}
+.ropt.wrong .rd::after{content:"";position:absolute;inset:2px;background:#c0392b;border-radius:50%}
+.tag{margin-left:auto;font-size:12px;font-weight:bold}
+.tag.g{color:#1f8a46}.tag.r{color:#c0392b}
+.reattempt{background:#fdf1e0;border:1px solid #f1dcb9;border-radius:4px;padding:16px 18px;margin:18px 0;max-width:460px}
+.reattempt b{font-size:16px;font-weight:normal;color:#444}
+.reattempt p{font-style:italic;font-size:13px;color:#666;margin-top:4px}
+.vsbtn{background:#fff;border:1px solid #0f96c7;color:#0f96c7;padding:8px 16px;border-radius:3px;font-size:13px}
+.vsrow{display:flex;gap:12px;align-items:center;margin:14px 0;font-size:13px;color:#555;flex-wrap:wrap}
+.solbox{border:1px solid #cfe3ee;background:#f7fbfd;border-radius:5px;padding:16px 18px;margin:8px 0 20px;line-height:1.75;font-size:15px}
+.solbox h4{color:#0f6f93;margin-bottom:6px}
+.solbox .ans{margin-top:10px;font-weight:bold;color:#1f8a46}
+.pie{width:170px;height:170px;border-radius:50%;margin:10px 0}
+.pielegend{font-size:13px;line-height:1.7}
+.pielegend i{display:inline-block;width:11px;height:11px;margin-right:6px;border-radius:2px}
+#result .side .cnt{display:flex;gap:10px;flex-wrap:wrap;padding:10px 12px;font-size:12px;border-bottom:1px solid #c3d6e2;background:#d8eaf4}
+.cnt span{display:inline-flex;align-items:center;gap:5px}
+.cnt em{font-style:normal;color:#fff;padding:1px 6px;border:1px solid #333;font-size:11px}
+.rp{width:40px;height:34px;border:0;font-size:14px;font-weight:bold;position:relative}
+.rp.ok{background:#2eaa5a;color:#fff;border-radius:18px 18px 3px 3px}
+.rp.bad{background:#c0392b;color:#fff;border-radius:18px 18px 3px 3px}
+.rp.skip{background:#fff;color:#222;border:1px solid #333;border-radius:2px}
+.rp.cursel{outline:2px solid #0f6f93;outline-offset:2px}
+@media(max-width:820px){.layout{flex-direction:column}.side{width:100%;border-left:0;border-top:1px solid #c3d6e2}.qbody{padding:14px}}
+</style>
+</head>
+<body>
+
+<!-- =============== INTRO =============== -->
+<div id="intro">
+  <header>
+    <h1>SSC CGL Blitz Mock 5</h1>
+    <p>Quantitative Aptitude • 30 Questions • Based on Parmar SSC Blitz Mock Series</p>
+  </header>
+  <div class="body">
+    <div class="meta">
+      <div><b>Questions:</b> 30</div>
+      <div><b>Total Marks:</b> 60</div>
+      <div><b>Duration:</b> 30 minutes</div>
+      <div><b>Marking:</b> +2 correct, −0.5 wrong</div>
+    </div>
+    <h3>Instructions</h3>
+    <ul>
+      <li>The countdown timer at the top-right shows the remaining time. The test auto-submits when it reaches zero.</li>
+      <li>Click a question number in the palette to jump to it.</li>
+      <li><b>Save &amp; Next</b> saves your answer and moves ahead. <b>Mark for Review &amp; Next</b> flags the question (an answered, marked question is still evaluated).</li>
+      <li><b>Clear Response</b> removes your selected option.</li>
+    </ul>
+    <div class="legend-row">
+      <span class="lg"><span class="pb nv">1</span> Not Visited</span>
+      <span class="lg"><span class="pb na">2</span> Not Answered</span>
+      <span class="lg"><span class="pb an">3</span> Answered</span>
+      <span class="lg"><span class="pb mr">4</span> Marked for Review</span>
+      <span class="lg"><span class="pb ar">5</span> Answered &amp; Marked</span>
+    </div>
+    <p style="margin-top:18px"><button class="btn btn-green" onclick="startTest()">I am ready to begin</button></p>
+  </div>
+</div>
+
+<!-- =============== TEST =============== -->
+<div id="test" class="hidden">
+  <div class="topbar">
+    <div><h2>SSC CGL Blitz Mock 5</h2><div class="sub">Quantitative Aptitude</div></div>
+    <div>Time Left: <span class="timer" id="timer">30:00</span></div>
+  </div>
+  <div class="sectionbar"><b>SECTIONS</b><span>Quantitative Aptitude</span></div>
+  <div class="layout">
+    <div class="main">
+      <div class="qhead"><b id="qno">Question No. 1</b><span>Marking Scheme: <b style="color:#2eaa5a">+2</b> / <b style="color:#c0392b">−0.5</b></span></div>
+      <div class="qbody"><div class="qtext" id="qtext"></div><div id="opts"></div></div>
+      <div class="qfoot">
+        <button class="btn btn-purple" onclick="markNext()">Mark for Review &amp; Next</button>
+        <button class="btn btn-light" onclick="clearResp()">Clear Response</button>
+        <button class="btn btn-light" onclick="go(cur-1)">Previous</button>
+        <span class="sp"></span>
+        <button class="btn btn-blue" onclick="saveNext()">Save &amp; Next</button>
+      </div>
+    </div>
+    <div class="side">
+      <div class="legend" id="legend"></div>
+      <div class="sec">Quantitative Aptitude</div>
+      <div class="palwrap"><div class="pal" id="pal"></div></div>
+      <div class="submitbox"><button class="btn btn-green" style="width:100%" onclick="confirmSubmit()">Submit Test</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- =============== RESULT =============== -->
+<div id="result" class="hidden">
+  <div class="topbar">
+    <div class="ttl"><span class="back" style="cursor:pointer" onclick="showSummary()">☰</span>
+      <div><h2>Tests</h2><div class="sub">SSC CGL Blitz Mock 5 – Maths • Solutions &amp; Analysis</div></div></div>
+    <div class="an-btn" style="cursor:pointer" onclick="showSummary()">ANALYTICS</div>
+  </div>
+  <div class="sectionbar"><b>SECTIONS</b><span>Test</span>
+    <span style="background:none;color:#222;margin-left:auto;padding:0;font-weight:normal">Score: <b id="scoreTop"></b></span></div>
+  <div class="layout">
+    <div class="main">
+      <div class="rqhead" id="rhead"></div>
+      <div class="qbody">
+        <div class="qtext" id="rtext"></div>
+        <div id="ropts"></div>
+        <div class="vsrow"><button class="vsbtn" onclick="toggleSol()">👁 View Solution</button><span>Click here to see the answer now</span></div>
+        <div id="rsol" class="hidden"></div>
+      </div>
+      <div class="qfoot">
+        <button class="btn btn-light" onclick="rgo(rc-1)">Previous</button>
+        <span class="sp"></span>
+        <button class="btn btn-light" onclick="rgo(rc+1)">Next</button>
+      </div>
+    </div>
+    <div class="side">
+      <div class="cnt" id="rcnt"></div>
+      <div class="sec">SECTION : Test</div>
+      <div class="palwrap"><div class="pal" id="rpal"></div></div>
+      <div class="submitbox" style="display:flex;gap:8px">
+        <button class="btn btn-light" style="flex:1" onclick="showSummary()">Summary</button>
+        <button class="btn btn-light" style="flex:1" onclick="location.reload()">Retake</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="modal" class="modal hidden"><div class="mbox" id="mbox"></div></div>
+
+<script>
+/* ===== CONFIG ===== */
+var MARK_RIGHT = 2, MARK_WRONG = 0.5, DURATION = 1800; // seconds
+
+/* ===== QUESTION DATA ===== */
+var Q = [
+{
+"c": "Statistics",
+"q": "For a moderately skewed distribution, if the difference between the mode and the median is 12, what is the difference between the median and the mean?",
+"o": [
+"4",
+"6",
+"8",
+"24"
+],
+"a": 1,
+"s": "Empirical relation: Mode = 3 Median − 2 Mean ⇒ Mode − Median = 2(Median − Mean).<br>12 = 2 × (Median − Mean) ⇒ Median − Mean = <b>6</b>."
+},
+{
+"c": "Mensuration",
+"q": "The total surface area of a right square pyramid is 360 cm² and the side of its square base is 10 cm. Find the vertical height of the pyramid.",
+"o": [
+"12 cm",
+"15 cm",
+"8 cm",
+"10 cm"
+],
+"a": 0,
+"s": "Base area = 10² = 100 cm² ⇒ lateral area = 360 − 100 = 260 cm².<br>Lateral area = ½ × perimeter × slant height = ½ × 40 × l = 260 ⇒ l = 13 cm.<br>Half of base side = 5 cm ⇒ height = √(13² − 5²) = √144 = <b>12 cm</b> (5-12-13 triple)."
+},
+{
+"c": "Probability",
+"q": "A natural number is chosen at random from {1, 2, 3, ..., 210}. What is the probability that the number is divisible by 5 or 7, but not divisible by 35?",
+"o": [
+"66/210",
+"72/210",
+"60/210",
+"54/210"
+],
+"a": 2,
+"s": "Divisible by 5: 210/5 = 42; by 7: 210/7 = 30; by both (35): 210/35 = 6.<br>Divisible by 5 only = 42 − 6 = 36; by 7 only = 30 − 6 = 24.<br>Required numbers = 36 + 24 = 60 (excluding the 6 multiples of 35).<br>Probability = <b>60/210</b>."
+},
+{
+"c": "Mensuration",
+"q": "A hemispherical tank is full of water. A pipe empties it at a rate of 7.7 litres per second. How much time (in minutes) will it take to completely empty the tank if the internal diameter of the tank is 4.2 metres? (Use π = 22/7 and 1 m³ = 1000 litres)",
+"o": [
+"36 minutes",
+"42 minutes",
+"21 minutes",
+"48 minutes"
+],
+"a": 1,
+"s": "Radius = 2.1 m. Volume = (2/3)πr³ = (2/3) × (22/7) × 2.1³ = 19.404 m³ = 19,404 litres.<br>Time = 19,404 ÷ 7.7 = 2,520 seconds = 2520/60 = <b>42 minutes</b>."
+},
+{
+"c": "Statistics",
+"q": "If the mode of the data set {k − 2, k, k, k + 4, k + 4, k + 4, k + 6, k + 8} is 28, find k.",
+"o": [
+"20",
+"24",
+"22",
+"26"
+],
+"a": 1,
+"s": "The value (k + 4) occurs three times, more than any other value, so it is the mode.<br>k + 4 = 28 ⇒ k = <b>24</b>."
+},
+{
+"c": "Pipes & Cisterns",
+"q": "Pipes P, Q and R can fill an empty cistern in 15 hours, 20 hours and 30 hours respectively. P is opened alone for 2 hours and then closed. After that, Q and R are opened together along with an outlet pipe S, which alone can empty the full cistern in 60 hours. In how many hours in total is the cistern completely filled?",
+"o": [
+"15 hours",
+"12.4 hours",
+"13 hours",
+"17 hours"
+],
+"a": 0,
+"s": "Capacity = LCM(15, 20, 30, 60) = 60 units. P = 4, Q = 3, R = 2, S = −1 units/hour.<br>P alone for 2 hours = 8 units. Remaining = 52 units.<br>Q + R + S = 3 + 2 − 1 = 4 units/hour ⇒ 52 ÷ 4 = 13 hours.<br>Total time = 2 + 13 = <b>15 hours</b>."
+},
+{
+"c": "Geometry",
+"q": "In a triangle ABC, the orthocentre and the centroid coincide. The triangle must be:",
+"o": [
+"Right-angled",
+"Scalene",
+"Equilateral",
+"Isosceles but not equilateral"
+],
+"a": 2,
+"s": "In an equilateral triangle the median, altitude, angle bisector and perpendicular bisector from each vertex are the same line, so orthocentre, centroid, incentre and circumcentre all coincide.<br>For any other triangle these points are distinct (they lie on the Euler line).<br>So the triangle must be <b>equilateral</b>."
+},
+{
+"c": "Mensuration",
+"q": "The base of a right prism is a regular hexagon of side 6 cm. If the total surface area of the prism is (108√3 + 432) cm², what is its lateral surface area?",
+"o": [
+"324 cm²",
+"504 cm²",
+"388 cm²",
+"432 cm²"
+],
+"a": 3,
+"s": "Area of regular hexagon = 6 × (√3/4) × 6² = 54√3 cm².<br>Two bases = 2 × 54√3 = 108√3 cm².<br>Lateral surface area = TSA − bases = (108√3 + 432) − 108√3 = <b>432 cm²</b>."
+},
+{
+"c": "Statistics",
+"q": "Find the median of the following distribution (marks out of 60): 0-10 (3), 10-20 (7), 20-30 (15), 30-40 (18), 40-50 (12), 50-60 (5).",
+"o": [
+"32.78",
+"30.50",
+"34.15",
+"29.20"
+],
+"a": 0,
+"s": "N = 3 + 7 + 15 + 18 + 12 + 5 = 60 ⇒ N/2 = 30.<br>Cumulative frequencies: 3, 10, 25, 43, 55, 60 ⇒ median class = 30–40 (cf before = 25, f = 18, h = 10).<br>Median = 30 + (30 − 25)/18 × 10 = 30 + 2.78 = <b>32.78</b>."
+},
+{
+"c": "Geometry",
+"q": "Two parallel chords of length 16 cm and 12 cm are drawn on the same side of the centre of a circle of radius 10 cm. What is the perpendicular distance between the chords?",
+"o": [
+"4 cm",
+"2 cm",
+"6 cm",
+"3 cm"
+],
+"a": 1,
+"s": "Distance of the 16 cm chord from the centre = √(10² − 8²) = 6 cm.<br>Distance of the 12 cm chord from the centre = √(10² − 6²) = 8 cm.<br>Both on the same side ⇒ distance between them = 8 − 6 = <b>2 cm</b>."
+},
+{
+"c": "Mensuration",
+"q": "A solid metallic hemisphere of radius 21 cm is melted and recast into a right circular cone whose height is twice its base radius. Find the curved surface area of the cone. (Use π = 22/7)",
+"o": [
+"1386√3 cm²",
+"693√5 cm²",
+"2772√5 cm²",
+"1386√5 cm²"
+],
+"a": 3,
+"s": "Volume: (2/3)π(21)³ = (1/3)πr² × 2r = (2/3)πr³ ⇒ r = 21 cm, h = 42 cm.<br>Slant height l = √(21² + 42²) = 21√5 cm.<br>CSA = πrl = (22/7) × 21 × 21√5 = <b>1386√5 cm²</b>."
+},
+{
+"c": "Ratio & Proportion",
+"q": "A sum of money is distributed among four friends A, B, C and D in the ratio 2 : 5 : 8 : ? respectively. The share of D is equal to the average of the shares of A and C. If C receives ₹1,500 more than B, find the total sum of money distributed.",
+"o": [
+"₹8,000",
+"₹10,000",
+"₹12,000",
+"₹15,000"
+],
+"a": 1,
+"s": "D = average of A and C = (2 + 8)/2 = 5 parts ⇒ ratio = 2 : 5 : 8 : 5.<br>C − B = 8 − 5 = 3 parts = ₹1,500 ⇒ 1 part = ₹500.<br>Total = (2 + 5 + 8 + 5) = 20 parts = 20 × 500 = <b>₹10,000</b>."
+},
+{
+"c": "Trigonometry",
+"q": "If sinθ + cosθ = 4/3, find the value of sin<sup>6</sup>θ + cos<sup>6</sup>θ.",
+"o": [
+"59/108",
+"113/162",
+"49/108",
+"−1/6"
+],
+"a": 0,
+"s": "Square both sides: 1 + 2 sinθ cosθ = 16/9 ⇒ sinθ cosθ = 7/18.<br>sin⁶θ + cos⁶θ = 1 − 3 sin²θ cos²θ = 1 − 3 × (49/324) = 1 − 49/108 = <b>59/108</b>."
+},
+{
+"c": "Algebra",
+"q": "If x² − 4x − 1 = 0, find the value of x<sup>4</sup> + 1/x<sup>4</sup>.",
+"o": [
+"324",
+"322",
+"256",
+"320"
+],
+"a": 1,
+"s": "Divide by x: x − 4 − 1/x = 0 ⇒ x − 1/x = 4.<br>x² + 1/x² = (x − 1/x)² + 2 = 16 + 2 = 18.<br>x⁴ + 1/x⁴ = (x² + 1/x²)² − 2 = 324 − 2 = <b>322</b>."
+},
+{
+"c": "Algebra",
+"q": "For what value of k will the system (k − 1)x + y = 2 and (k + 1)x + 3y = 5 have infinitely many solutions?",
+"o": [
+"2",
+"3",
+"No such value",
+"4"
+],
+"a": 2,
+"s": "Infinite solutions need a₁/a₂ = b₁/b₂ = c₁/c₂.<br>b₁/b₂ = 1/3 and c₁/c₂ = 2/5, but 1/3 ≠ 2/5 for any k.<br>(Even k = 2, which satisfies (k − 1)/(k + 1) = 1/3, gives only parallel lines.)<br>So there is <b>no such value</b> of k."
+},
+{
+"c": "Set Theory",
+"q": "How many positive integers less than or equal to 500 are divisible by none of 4, 6 and 7?",
+"o": [
+"290",
+"215",
+"221",
+"285"
+],
+"a": 3,
+"s": "By 4: 500/4 = 125; by 6: 83; by 7: 71.<br>By 4 & 6 (LCM 12): 41; by 4 & 7 (28): 17; by 6 & 7 (42): 11; by all three (LCM 84): 5.<br>Divisible by at least one = 125 + 83 + 71 − 41 − 17 − 11 + 5 = 215.<br>Divisible by none = 500 − 215 = <b>285</b>."
+},
+{
+"c": "Ratio & Proportion",
+"q": "₹12,500 is divided among X, Y and Z such that X gets 2/5th of what Y and Z together get. How much does X receive?",
+"o": [
+"₹3,571.43",
+"₹5,000.00",
+"₹4,166.67",
+"₹3,125.00"
+],
+"a": 0,
+"s": "X : (Y + Z) = 2 : 5 ⇒ X's share = 2/7 of the total.<br>X = (2/7) × 12,500 = 25,000/7 ≈ <b>₹3,571.43</b>."
+},
+{
+"c": "Trigonometry",
+"q": "If sec θ + tan θ = p, express sin θ in terms of p.",
+"o": [
+"2p/(p² + 1)",
+"(p² − 1)/(p² + 1)",
+"(p² + 1)/(p² − 1)",
+"(p² − 1)/2p"
+],
+"a": 1,
+"s": "sec θ + tan θ = p and sec θ − tan θ = 1/p (reciprocal conjugates).<br>sec θ = (p + 1/p)/2 = (p² + 1)/2p; tan θ = (p − 1/p)/2 = (p² − 1)/2p.<br>sin θ = tan θ ÷ sec θ = <b>(p² − 1)/(p² + 1)</b>.<br>(Triangle method: perpendicular = p² − 1, hypotenuse = p² + 1, base = 2p.)"
+},
+{
+"c": "Mensuration",
+"q": "The areas of three adjacent faces of a cuboid are 48 cm², 60 cm² and 80 cm². Find the length of its longest diagonal.",
+"o": [
+"10 cm",
+"5√6 cm",
+"10√3 cm",
+"10√2 cm"
+],
+"a": 3,
+"s": "lb = 48, bh = 60, hl = 80 ⇒ (lbh)² = 48 × 60 × 80 = 230,400 ⇒ lbh = 480.<br>l = 480/60 = 8, b = 480/80 = 6, h = 480/48 = 10.<br>Diagonal = √(8² + 6² + 10²) = √200 = <b>10√2 cm</b>."
+},
+{
+"c": "Geometry",
+"q": "In a right-angled triangle PQR, right-angled at Q, the lengths of sides PQ and QR are 9 cm and 12 cm, respectively. What is the distance between the orthocenter and the centroid of the triangle?",
+"o": [
+"4 cm",
+"5 cm",
+"6 cm",
+"7.5 cm"
+],
+"a": 1,
+"s": "Hypotenuse PR = √(81 + 144) = 15 cm.<br>In a right triangle the orthocentre is the right-angle vertex Q.<br>The median from Q to the hypotenuse = 15/2 = 7.5 cm, and the centroid lies 2/3 of the way along it.<br>QG = (2/3) × 7.5 = <b>5 cm</b>."
+},
+{
+"c": "Simplification",
+"q": "Evaluate: (0.333… × 0.5 × 0.8333…) / (0.1666… × 0.625 × 0.4), where the dots mean recurring decimals.",
+"o": [
+"10/3",
+"8/3",
+"5/2",
+"4"
+],
+"a": 0,
+"s": "0.333… = 1/3, 0.5 = 1/2, 0.8333… = 5/6, 0.1666… = 1/6, 0.625 = 5/8, 0.4 = 2/5.<br>Numerator = (1/3)(1/2)(5/6) = 5/36.<br>Denominator = (1/6)(5/8)(2/5) = 1/24.<br>Value = (5/36) × 24 = <b>10/3</b>."
+},
+{
+"c": "Mensuration",
+"q": "A rectangle measures 16 cm × 12 cm. A rhombus is formed by joining the midpoints of its sides. What is the area of the circle inscribed in this rhombus? (Use π = 22/7)",
+"o": [
+"50.29 cm²",
+"72.41 cm²",
+"113.14 cm²",
+"18.10 cm²"
+],
+"a": 1,
+"s": "The rhombus has diagonals 16 cm and 12 cm ⇒ side = √(8² + 6²) = 10 cm.<br>Area of rhombus = ½ × 16 × 12 = 96 cm² (half the rectangle).<br>Area = r × semi-perimeter ⇒ 96 = r × 20 ⇒ r = 4.8 cm.<br>Circle area = (22/7) × 4.8² = (22/7) × 23.04 ≈ <b>72.41 cm²</b>."
+},
+{
+"c": "Geometry",
+"q": "In triangle ABC, angle B = 72° and angle C = 44°. The internal bisector of angle A meets BC at D, and AE ⊥ BC at E. Find angle DAE.",
+"o": [
+"28°",
+"16°",
+"14°",
+"22°"
+],
+"a": 2,
+"s": "The angle between the altitude and the angle bisector from A is half the difference of the other two angles.<br>∠DAE = ½ |∠B − ∠C| = ½ × |72° − 44°| = ½ × 28° = <b>14°</b>."
+},
+{
+"c": "Trigonometry",
+"q": "What is the value of 4(cos<sup>4</sup>15° − sin<sup>4</sup>15°)?",
+"o": [
+"√3",
+"√2",
+"2",
+"2√3"
+],
+"a": 3,
+"s": "cos⁴θ − sin⁴θ = (cos²θ + sin²θ)(cos²θ − sin²θ) = cos 2θ.<br>So the expression = 4 cos 30° = 4 × (√3/2) = <b>2√3</b>."
+},
+{
+"c": "Compound Interest",
+"q": "A sum of ₹40,000 invested at compound interest amounts to ₹50,388.48 in 9 months. If the interest is compounded quarterly, find the annual rate of interest.",
+"o": [
+"32%",
+"24%",
+"8%",
+"36%"
+],
+"a": 0,
+"s": "9 months = 3 quarters. (1 + r/100)³ = 50,388.48 / 40,000 = 1.259712.<br>1.08³ = 1.259712 ⇒ rate per quarter = 8%.<br>Annual rate = 8 × 4 = <b>32%</b>."
+},
+{
+"c": "Mensuration",
+"q": "The base of a right pyramid is an equilateral triangle of side 9 cm and its volume is 243 cm³. Find the vertical height of the pyramid.",
+"o": [
+"6√3 cm",
+"12√3 cm",
+"9√3 cm",
+"8√3 cm"
+],
+"a": 1,
+"s": "Base area = (√3/4) × 9² = 81√3/4 cm².<br>Volume = (1/3) × base area × h = 243 ⇒ (1/3)(81√3/4) h = 243.<br>(27√3/4) h = 243 ⇒ h = 36/√3 = <b>12√3 cm</b>."
+},
+{
+"c": "Partnership",
+"q": "A, B and C start a partnership. A invests 1/4th of the total capital for 1/4th of the time, B invests 1/3rd of the capital for 1/3rd of the time, and C invests the remaining capital for the full time. Out of a total profit of ₹11,900, find C's share.",
+"o": [
+"₹7,200",
+"₹6,600",
+"₹8,400",
+"₹7,800"
+],
+"a": 2,
+"s": "Capital: A = 1/4, B = 1/3, C = 1 − 1/4 − 1/3 = 5/12 (i.e. 3 : 4 : 5 out of 12).<br>Capital × time: A = 3 × 1/4 = 3/4; B = 4 × 1/3 = 4/3; C = 5 × 1 = 5.<br>Ratio = 3/4 : 4/3 : 5 = 9 : 16 : 60 (× 12).<br>C's share = (60/85) × 11,900 = 12 × 700 = <b>₹8,400</b>."
+},
+{
+"c": "Mixture",
+"q": "A vessel contains 100 litres of pure milk. 20 litres of milk is taken out and replaced by water. This process is repeated once more. Then 25 litres of the resulting mixture is taken out and replaced by water. What is the ratio of milk to water in the final mixture?",
+"o": [
+"16 : 9",
+"13 : 12",
+"39 : 61",
+"12 : 13"
+],
+"a": 3,
+"s": "Each removal of 20 L leaves 4/5 of the milk; removing 25 L leaves 3/4 of the milk.<br>Milk fraction = (4/5) × (4/5) × (3/4) = 12/25.<br>Milk : water = 12 : (25 − 12) = <b>12 : 13</b>."
+},
+{
+"c": "Average",
+"q": "The mean score of 50 students is 62. If the mean score of the top 20 students is 80 and that of the next 15 students is 60, what is the mean score of the remaining students?",
+"o": [
+"40",
+"44",
+"48",
+"52"
+],
+"a": 0,
+"s": "Total = 50 × 62 = 3,100. Top 20 = 20 × 80 = 1,600; next 15 = 15 × 60 = 900.<br>Remaining 15 students: total = 3,100 − 2,500 = 600.<br>Mean = 600 ÷ 15 = <b>40</b>."
+},
+{
+"c": "Geometry",
+"q": "In triangle PQR, I is the incentre. If angle QIR = 125°, what is the measure of angle P?",
+"o": [
+"60°",
+"80°",
+"50°",
+"70°"
+],
+"a": 3,
+"s": "For the incentre: ∠QIR = 90° + ∠P/2.<br>125° = 90° + ∠P/2 ⇒ ∠P/2 = 35° ⇒ ∠P = <b>70°</b>."
+}
+];
+
+/* ===== STATE ===== */
+var N = Q.length, cur = 0, rc = 0, remaining = DURATION, tick = null;
+var ans = [], visited = [], marked = [], tspent = [], name = "Candidate", submitted = false;
+for (var i=0;i<N;i++){ans.push(null);visited.push(false);marked.push(false);tspent.push(0);}
+var L = ["A","B","C","D"];
+function $(id){return document.getElementById(id);}
+function fmt(s){s=Math.max(0,Math.round(s));var m=Math.floor(s/60),r=s%60;return (m<10?"0":"")+m+":"+(r<10?"0":"")+r;}
+
+/* ===== TEST ===== */
+function startTest(){
+  $("intro").classList.add("hidden"); $("test").classList.remove("hidden");
+  renderTest();
+  tick = setInterval(function(){
+    remaining--; tspent[cur]++;
+    $("timer").textContent = fmt(remaining);
+    if (remaining<=0){ clearInterval(tick); finish(); }
+  },1000);
+}
+function stateOf(i){
+  if (!visited[i]) return "nv";
+  var a = ans[i]!==null, m = marked[i];
+  if (a&&m) return "ar"; if (m) return "mr"; if (a) return "an"; return "na";
+}
+function renderTest(){
+  visited[cur]=true;
+  var q=Q[cur];
+  $("qno").textContent="Question No. "+(cur+1);
+  $("qtext").innerHTML=q.q;
+  var h="";
+  q.o.forEach(function(t,i){
+    h+='<label class="opt"><input type="radio" name="o" '+(ans[cur]===i?"checked":"")+' onchange="ans['+cur+']='+i+';renderPal()"><span><b>('+L[i]+')</b>&nbsp; '+t+'</span></label>';
+  });
+  $("opts").innerHTML=h;
+  renderPal();
+}
+function renderPal(){
+  var h="",c={nv:0,na:0,an:0,mr:0,ar:0};
+  for (var i=0;i<N;i++){var s=stateOf(i);c[s]++;h+='<button class="pb '+s+(i===cur?" cur":"")+'" onclick="go('+i+')">'+(i+1)+'</button>';}
+  $("pal").innerHTML=h;
+  $("legend").innerHTML=
+   '<span class="lg"><span class="pb an">'+c.an+'</span>Answered</span>'+
+   '<span class="lg"><span class="pb na">'+c.na+'</span>Not Answered</span>'+
+   '<span class="lg"><span class="pb nv">'+c.nv+'</span>Not Visited</span>'+
+   '<span class="lg"><span class="pb mr">'+c.mr+'</span>Marked</span>'+
+   '<span class="lg" style="grid-column:1/3"><span class="pb ar">'+c.ar+'</span>Answered &amp; Marked (will be evaluated)</span>';
+}
+function go(i){ if(i<0||i>=N) return; cur=i; renderTest(); }
+function saveNext(){ marked[cur]=marked[cur]; if(cur<N-1) go(cur+1); else renderPal(); }
+function markNext(){ marked[cur]=true; if(cur<N-1) go(cur+1); else renderPal(); }
+function clearResp(){ ans[cur]=null; marked[cur]=false; renderTest(); }
+
+function confirmSubmit(){
+  var a=0; ans.forEach(function(x){if(x!==null)a++;});
+  $("mbox").innerHTML='<h3>Submit Test?</h3><p style="line-height:1.7">Answered: <b>'+a+'</b> &nbsp;|&nbsp; Not answered: <b>'+(N-a)+'</b> &nbsp;|&nbsp; Time left: <b>'+fmt(remaining)+'</b></p><p style="margin-top:12px">Once submitted, you cannot change your answers.</p><p style="margin-top:16px;display:flex;gap:10px"><button class="btn btn-green" onclick="finish()">Yes, Submit</button><button class="btn btn-light" onclick="closeModal()">Go Back</button></p>';
+  $("modal").classList.remove("hidden");
+}
+function closeModal(){ $("modal").classList.add("hidden"); }
+
+/* ===== RESULT ===== */
+function statusOf(i){ if(ans[i]===null) return "skip"; return ans[i]===Q[i].a?"ok":"bad"; }
+function stats(){
+  var s={ok:0,bad:0,skip:0,score:0,time:0};
+  for(var i=0;i<N;i++){var t=statusOf(i);s[t]++; s.time+=tspent[i];}
+  s.score = s.ok*MARK_RIGHT - s.bad*MARK_WRONG;
+  return s;
+}
+function finish(){
+  if(submitted) return; submitted=true; clearInterval(tick); closeModal();
+  $("test").classList.add("hidden"); $("result").classList.remove("hidden");
+  var s=stats();
+  $("scoreTop").textContent=s.score+" / "+(N*MARK_RIGHT);
+  $("rcnt").innerHTML='<span><em style="background:#2eaa5a;border-color:#2eaa5a">'+s.ok+'</em> Correct</span><span><em style="background:#fff;color:#000">'+s.skip+'</em> Unattempted</span><span><em style="background:#c0392b;border-color:#c0392b">'+s.bad+'</em> Incorrect</span>';
+  rc=0; renderRes(); window.scrollTo(0,0); showSummary();
+}
+function renderRes(){
+  var q=Q[rc], u=ans[rc], st=statusOf(rc);
+  var mk = st==="ok"?"+"+MARK_RIGHT : (st==="bad"?"−"+MARK_WRONG:"0");
+  var bl = st==="ok"?"Correct":(st==="bad"?"Incorrect":"Skipped");
+  $("rhead").innerHTML='<b>Question No.'+(rc+1)+'</b><span class="badge b-'+st+'">'+bl+'</span><span>⏱ You: <b>'+fmt(tspent[rc])+'</b></span><span style="color:#aaa">|</span><span>Marks <span class="mk" style="background:'+(st==="ok"?"#2eaa5a":st==="bad"?"#c0392b":"#777")+'">'+mk+'</span></span><span style="margin-left:auto;color:#667">Topic: '+q.c+'</span>';
+  $("rtext").innerHTML=q.q;
+  var h="";
+  q.o.forEach(function(t,i){
+    var cls="ropt", tag="";
+    if(i===q.a){cls+=" right"; tag='<span class="tag g">✓ Correct Answer'+(u===i?" (Your Answer)":"")+'</span>';}
+    else if(i===u){cls+=" wrong"; tag='<span class="tag r">✗ Your Answer</span>';}
+    h+='<div class="'+cls+'"><span class="rd"></span><span>('+L[i]+') '+t+'</span>'+tag+'</div>';
+  });
+  $("ropts").innerHTML=h;
+  $("rsol").className="hidden";
+  $("rsol").innerHTML='<div class="solbox"><h4>Solution</h4>'+q.s+'<div class="ans">Hence, option ('+L[q.a]+') is correct.</div></div>';
+  var p="";
+  for(var i=0;i<N;i++){p+='<button class="rp '+statusOf(i)+(i===rc?" cursel":"")+'" onclick="rgo('+i+')">'+(i+1)+'</button>';}
+  $("rpal").innerHTML=p;
+}
+function rgo(i){ if(i<0||i>=N) return; rc=i; renderRes(); }
+function toggleSol(){ $("rsol").classList.toggle("hidden"); }
+
+function showSummary(){
+  var s=stats(), att=s.ok+s.bad, acc=att?Math.round(100*s.ok/att):0;
+  var cats={}, order=[];
+  for(var i=0;i<N;i++){var c=Q[i].c; if(!cats[c]){cats[c]={n:0,ok:0,bad:0,sk:0,t:0};order.push(c);} var o=cats[c]; o.n++; o.t+=tspent[i]; var st=statusOf(i); if(st==="ok")o.ok++; else if(st==="bad")o.bad++; else o.sk++;}
+  var rows="";
+  order.forEach(function(c){var o=cats[c]; rows+='<tr><td>'+c+'</td><td>'+o.n+'</td><td>'+o.ok+'</td><td>'+o.bad+'</td><td>'+o.sk+'</td><td>'+fmt(o.t)+'</td></tr>';});
+  $("mbox").innerHTML='<h3>Result Summary</h3>'+
+   '<table><tr><th>Score</th><th>Attempted</th><th>Correct</th><th>Incorrect</th><th>Accuracy</th><th>Time Used</th></tr><tr><td><b>'+s.score+' / '+(N*MARK_RIGHT)+'</b></td><td>'+att+' / '+N+'</td><td style="color:#1f8a46"><b>'+s.ok+'</b></td><td style="color:#c0392b"><b>'+s.bad+'</b></td><td>'+acc+'%</td><td>'+fmt(s.time)+'</td></tr></table>'+
+   '<p style="font-size:13px;color:#555;margin-bottom:10px">Benchmark from the series: fewer than 24 attempts is weak, 24 is doable, 27 is a very good attempt and 30 is the perfect score (max target).</p>'+
+   '<h3 style="font-size:15px">Topic-wise Analysis</h3><table><tr><th>Topic</th><th>Qs</th><th>Correct</th><th>Wrong</th><th>Skipped</th><th>Time</th></tr>'+rows+'</table>'+
+   '<button class="btn btn-primary" onclick="closeModal()">Review Solutions</button>';
+  $("modal").classList.remove("hidden");
+}
+</script>
+</body>
+</html>
