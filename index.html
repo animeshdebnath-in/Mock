@@ -3,8 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Mock Hub</title>
-<meta name="description" content="SSC CGL mock tests for maths, English and reasoning.">
+<title>Animesh Test Series | Mock Hub</title>
+<meta name="description" content="Animesh Test Series: SSC CGL mock tests for maths, English and reasoning.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='15' fill='%230B2A5B'/%3E%3Cpath d='M14 50 L32 12 L50 50' fill='none' stroke='%23FFFFFF' stroke-width='4.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M25 40 L30.5 45.5 L38 35' fill='none' stroke='%23F28C28' stroke-width='3.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -21,12 +22,20 @@ body{
   font:400 16px/1.6 Figtree,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
   -webkit-font-smoothing:antialiased;
 }
-.wrap{max-width:820px; margin:0 auto; padding:72px 24px 56px}
-h1{
-  font-size:clamp(2.6rem,8vw,4rem); line-height:1.02; letter-spacing:-.035em;
-  font-weight:700; margin:0 0 16px; text-align:center;
-}
-.lead{color:var(--muted); font-size:1.15rem; max-width:44ch; margin:0 auto 64px; text-align:center}
+.wrap{max-width:820px; margin:0 auto; padding:40px 24px 56px}
+
+.brand{display:flex; align-items:center; justify-content:center; gap:14px; margin:0; text-decoration:none; color:#0b2a5b}
+.brand svg{width:52px; height:52px; flex:none}
+.brand .bt{display:flex; flex-direction:column; gap:5px}
+.brand .bn{font-weight:700; font-size:1.7rem; line-height:1; letter-spacing:-.02em}
+.brand .bs{font-weight:600; font-size:.68rem; line-height:1; letter-spacing:.34em; color:#c2410c}
+.brand:focus-visible{outline:2px solid var(--accent); outline-offset:6px; border-radius:8px}
+h1{margin:0 0 48px; font-size:inherit; line-height:1}
+
+.quote{margin:0 auto 56px; max-width:26ch; text-align:center}
+.quote blockquote{margin:0; font-size:clamp(1.5rem,5vw,2.1rem); font-weight:600; line-height:1.25; letter-spacing:-.02em; color:#0b2a5b}
+.quote figcaption{margin-top:12px; color:var(--muted); font-size:.95rem}
+.quote figcaption::before{content:"\2014\00a0"}
 
 .group{margin:0 0 40px}
 .group h2{font-size:.95rem; font-weight:600; color:var(--muted); margin:0 0 8px}
@@ -72,8 +81,20 @@ footer{color:var(--muted); font-size:.9rem; margin-top:56px}
 </head>
 <body>
 <main class="wrap">
-  <h1>Mock Hub</h1>
-  <p class="lead">SSC CGL practice tests, organised by subject and source. Pick a section and start a test.</p>
+  <h1>
+    <a class="brand" href="./" aria-label="Animesh Test Series, home">
+      <svg viewBox="0 0 64 64" aria-hidden="true">
+        <rect width="64" height="64" rx="15" fill="#0b2a5b"/>
+        <path d="M14 50 L32 12 L50 50" fill="none" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M25 40 L30.5 45.5 L38 35" fill="none" stroke="#f28c28" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="bt"><span class="bn">Animesh</span><span class="bs">TEST SERIES</span></span>
+    </a>
+  </h1>
+  <figure class="quote">
+    <blockquote>“Arise, awake, and stop not till the goal is reached.”</blockquote>
+    <figcaption>Swami Vivekananda</figcaption>
+  </figure>
   <div id="mocks"></div>
 </main>
 
