@@ -77,6 +77,16 @@ footer{color:var(--muted); font-size:.9rem; margin-top:56px}
   html{scroll-behavior:auto}
   .chev{transition:none}
 }
+
+.stats{display:flex; gap:12px; flex-wrap:wrap; margin:4px 0 14px}
+.stat{flex:1; min-width:110px; padding:12px 14px; border:1px solid var(--line); border-radius:12px}
+.stat b{display:block; font-size:1.3rem; font-weight:700; color:#0b2a5b}
+.stat span{color:var(--muted); font-size:.85rem}
+.tbl{overflow-x:auto}
+.tbl table{width:100%; border-collapse:collapse; font-size:.92rem; min-width:480px}
+.tbl th{text-align:left; color:var(--muted); font-weight:600; padding:8px 10px; border-bottom:1px solid var(--line)}
+.tbl td{padding:9px 10px; border-bottom:1px solid var(--line)}
+.pct{font-weight:600}
 </style>
 </head>
 <body>
@@ -96,8 +106,10 @@ footer{color:var(--muted); font-size:.9rem; margin-top:56px}
     <figcaption>Swami Vivekananda</figcaption>
   </figure>
   <div id="mocks"></div>
+  <div id="scores"></div>
 </main>
 
+<script src="tracker.js"></script>
 <script>
 /* To add a mock, put an entry inside a section's mocks list, for example:
    {title:"RBE Mock 1", url:"mocks/rbe-1.html", questions:30, minutes:30}  */
@@ -178,6 +190,64 @@ function openFromHash() {
 }
 openFromHash();
 addEventListener("hashchange", openFromHash);
+
+/* ---------- Score history (reads from your Google Sheet) ---------- */
+(function(){
+  if (typeof SHEET_URL === "undefined" || !SHEET_URL || SHEET_URL.indexOf("PASTE") === 0) return;
+  const box = document.getElementById("scores");
+  const grp = el("section", "group");
+  grp.append(el("h2", null, "Progress"));
+  const d = el("details", "item"); d.id = "history";
+  const sm = el("summary");
+  const nm = el("div", "name");
+  nm.append(el("b", null, "Score History"), el("span", null, "Every test you have submitted"));
+  const cnt = el("span", "count", "Loading...");
+  sm.append(nm, cnt);
+  sm.insertAdjacentHTML("beforeend",'<svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>');
+  const p = el("div", "panel");
+  p.append(el("p", "empty", "Loading your scores..."));
+  d.append(sm, p); grp.append(d); box.append(grp);
+
+  fetch(SHEET_URL + "?limit=100").then(r => r.json()).then(rows => {
+    p.textContent = "";
+    if (!Array.isArray(rows) || !rows.length) {
+      cnt.textContent = "No attempts yet";
+      p.append(el("p", "empty", "Submit a test and it will show up here."));
+      return;
+    }
+    cnt.textContent = rows.length + (rows.length === 1 ? " attempt" : " attempts");
+    const pcts = rows.map(r => Number(r.percent) || 0);
+    const avg = (pcts.reduce((a, b) => a + b, 0) / pcts.length).toFixed(1);
+    const best = Math.max.apply(null, pcts).toFixed(1);
+    const stats = el("div", "stats");
+    [[rows.length, "Attempts"], [avg + "%", "Average"], [best + "%", "Best"]].forEach(x => {
+      const c = el("div", "stat"); c.append(el("b", null, x[0]), el("span", null, x[1])); stats.append(c);
+    });
+    p.append(stats);
+
+    const wrap = el("div", "tbl"), t = el("table"), thead = el("thead"), hr = el("tr");
+    ["Date", "Test", "Score", "%", "Time"].forEach(h => hr.append(el("th", null, h)));
+    thead.append(hr); t.append(thead);
+    const tb = el("tbody");
+    rows.forEach(r => {
+      const tr = el("tr");
+      const dt = new Date(r.time);
+      const mins = r.seconds ? Math.round(r.seconds / 60) + " min" : "-";
+      [dt.toLocaleDateString("en-IN", {day:"numeric", month:"short"}) + " " +
+         dt.toLocaleTimeString("en-IN", {hour:"2-digit", minute:"2-digit"}),
+       r.test, r.score + " / " + r.total, null, mins].forEach((v, i) => {
+        const td = el("td", i === 3 ? "pct" : null, v == null ? Number(r.percent).toFixed(1) + "%" : v);
+        tr.append(td);
+      });
+      tb.append(tr);
+    });
+    t.append(tb); wrap.append(t); p.append(wrap);
+  }).catch(() => {
+    cnt.textContent = "Unavailable";
+    p.textContent = "";
+    p.append(el("p", "empty", "Could not load scores. Check the Apps Script URL and deployment access."));
+  });
+})();
 </script>
 </body>
 </html>

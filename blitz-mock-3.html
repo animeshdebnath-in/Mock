@@ -119,6 +119,7 @@ table.dt th{background:#e6f0f6}
 .rp.cursel{outline:2px solid #0f6f93;outline-offset:2px}
 @media(max-width:820px){.layout{flex-direction:column}.side{width:100%;border-left:0;border-top:1px solid #c3d6e2}.qbody{padding:14px}}
 </style>
+<script src="tracker.js"></script>
 </head>
 <body>
 
@@ -657,6 +658,7 @@ function finish(){
   if(submitted) return; submitted=true; clearInterval(tick); closeModal();
   $("test").classList.add("hidden"); $("result").classList.remove("hidden");
   var s=stats();
+  try{ logResult({test:"Blitz Mock 3", subject:"Mathematics", score:s.score, total:N*MARK_RIGHT, seconds:s.time}); }catch(e){}
   $("scoreTop").textContent=s.score+" / "+(N*MARK_RIGHT);
   $("rcnt").innerHTML='<span><em style="background:#2eaa5a;border-color:#2eaa5a">'+s.ok+'</em> Correct</span><span><em style="background:#fff;color:#000">'+s.skip+'</em> Unattempted</span><span><em style="background:#c0392b;border-color:#c0392b">'+s.bad+'</em> Incorrect</span>';
   rc=0; renderRes(); window.scrollTo(0,0); showSummary();
