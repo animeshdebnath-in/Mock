@@ -83,7 +83,7 @@ footer{color:var(--muted); font-size:.9rem; margin-top:56px}
 .stat b{display:block; font-size:1.3rem; font-weight:700; color:#0b2a5b}
 .stat span{color:var(--muted); font-size:.85rem}
 .tbl{overflow-x:auto}
-.tbl table{width:100%; border-collapse:collapse; font-size:.92rem; min-width:480px}
+.tbl table{width:100%; border-collapse:collapse; font-size:.92rem; min-width:680px}
 .tbl th{text-align:left; color:var(--muted); font-weight:600; padding:8px 10px; border-bottom:1px solid var(--line)}
 .tbl td{padding:9px 10px; border-bottom:1px solid var(--line)}
 .pct{font-weight:600}
@@ -226,7 +226,7 @@ addEventListener("hashchange", openFromHash);
     p.append(stats);
 
     const wrap = el("div", "tbl"), t = el("table"), thead = el("thead"), hr = el("tr");
-    ["Date", "Test", "Score", "%", "Time"].forEach(h => hr.append(el("th", null, h)));
+    ["Date", "Test", "Score", "%", "Time", "Wrong Qs", "Skipped Qs"].forEach(h => hr.append(el("th", null, h)));
     thead.append(hr); t.append(thead);
     const tb = el("tbody");
     rows.forEach(r => {
@@ -235,7 +235,7 @@ addEventListener("hashchange", openFromHash);
       const mins = r.seconds ? Math.round(r.seconds / 60) + " min" : "-";
       [dt.toLocaleDateString("en-IN", {day:"numeric", month:"short"}) + " " +
          dt.toLocaleTimeString("en-IN", {hour:"2-digit", minute:"2-digit"}),
-       r.test, r.score + " / " + r.total, null, mins].forEach((v, i) => {
+       r.test, r.score + " / " + r.total, null, mins, r.wrong || "-", r.skipped || "-"].forEach((v, i) => {
         const td = el("td", i === 3 ? "pct" : null, v == null ? Number(r.percent).toFixed(1) + "%" : v);
         tr.append(td);
       });
